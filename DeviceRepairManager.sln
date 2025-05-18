@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36109.1 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceRepairManager", "DeviceRepairManager\DeviceRepairManager.csproj", "{1F86CC46-A82C-4D4D-923A-03476E00E87E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1F86CC46-A82C-4D4D-923A-03476E00E87E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F86CC46-A82C-4D4D-923A-03476E00E87E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F86CC46-A82C-4D4D-923A-03476E00E87E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F86CC46-A82C-4D4D-923A-03476E00E87E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0BCA5D64-9838-447F-BF9B-9279B5541BAE}
+	EndGlobalSection
+EndGlobal
