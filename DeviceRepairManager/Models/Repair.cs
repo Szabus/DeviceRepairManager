@@ -1,55 +1,37 @@
-﻿internal class Repair
+﻿using System;
+
+namespace DeviceRepairManager.Models
 {
-    public int RepairId { get; set; }                // egyedi javítás azonosító
-    public int DeviceId { get; set; }                // eszköz azonosító
-    public string? Type { get; set; }
-    public string? Brand { get; set; }
-    public string? Model { get; set; }
-    public string? SerialNumber { get; set; }
-    public int CustomerId { get; set; }              // ügyfél azonosító
-    public DateTime PurchaseDate { get; set; }
-    public string? WarrantyStatus { get; set; }
-    public string? Color { get; set; }
-    public string? PowerSupply { get; set; }
-    public string? Location { get; set; }
-    public string? Condition { get; set; }
-    public string? Notes { get; set; }
-    public string? Category { get; set; }
-    public bool IsUnderRepair { get; set; }
-    public int RepairCount { get; set; }
-
-    public DateTime StartDate { get; set; }          
-    public DateTime? EndDate { get; set; }            
-    public string? Status { get; set; }                
-    public string? Description { get; set; }           
-    public bool CustomerApproved { get; set; }         
-    public int? TechnicianId { get; set; }              
-
-    public void AssignToCustomer(int customerId)
+    internal class Repair
     {
-        CustomerId = customerId;
-    }
+        public int RepairId { get; set; }
+        public int DeviceId { get; set; }
+        public int CustomerId { get; set; }
+        public DateTime StartDate { get; set; }
+        public string? Status { get; set; }
+        public string? Description { get; set; }
+        public bool CustomerApproved { get; set; }
+        public DateTime? EndDate { get; set; }
+        public string? Notes { get; set; }
+        public int RepairCount { get; set; }
+        public bool IsUnderRepair { get; set; }
 
-    public void UpdateWarranty(string status)
-    {
-        WarrantyStatus = status;
-    }
+        
+        public void UpdateRepairStatus(string newStatus)
+        {
+            Status = newStatus;
+            if (newStatus?.ToLower() == "kész")
+            {
+                EndDate = DateTime.Now;
+                IsUnderRepair = false;
+                RepairCount++;
+            }
+        }
 
-    public void MarkAsRepaired()
-    {
-        IsUnderRepair = false;
-        RepairCount++;
-        EndDate = DateTime.Now;
-        Status = "Kész";
-    }
-
-    public bool NeedsRepair()
-    {
-        return Condition == "Hibás";
-    }
-
-    public string GetDeviceSummary()
-    {
-        return $"{Brand} {Model} - SN: {SerialNumber}";
+      
+        public void LogWorkHours(decimal hours)
+        {
+            
+        }
     }
 }

@@ -8,14 +8,10 @@
     public int CustomerId { get; set; }
     public DateTime PurchaseDate { get; set; }
     public string? WarrantyStatus { get; set; }
-    public string? Color { get; set; }
-    public string? PowerSupply { get; set; }
-    public string? Location { get; set; }
     public string? Condition { get; set; }
-    public string? Notes { get; set; }
-    public string? Category { get; set; }
-    public bool IsUnderRepair { get; set; }
-    public int RepairCount { get; set; }
+
+    public string? Location { get; set; }
+    public string? Color { get; set; }
 
     public string GetDeviceSummary()
     {
