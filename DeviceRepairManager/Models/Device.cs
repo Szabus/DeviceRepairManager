@@ -1,4 +1,4 @@
-﻿internal class Device
+﻿public class Device
 {
     public int DeviceId { get; set; }
     public string? Type { get; set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DeviceRepairManager.Models
 {
-    internal class WorkOrder
+    public class WorkOrder
     {
         public int WorkOrderId { get; set; }
         public int RepairId { get; set; }

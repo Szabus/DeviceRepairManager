@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace DeviceRepairManager.Models
 {
-    internal class Customer
+    public class Customer
     {
         public int CustomerId { get; set; }
         public string? Name { get; set; }

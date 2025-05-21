@@ -113,6 +113,17 @@ namespace DeviceRepairManager.Data
                 );
             ";
             cmd.ExecuteNonQuery();
+
+            cmd.CommandText = @"
+                CREATE TABLE IF NOT EXISTS Admins (
+                    AdminId INTEGER PRIMARY KEY AUTOINCREMENT,
+                    Username TEXT NOT NULL,
+                    PasswordHash TEXT NOT NULL,
+                    Name TEXT NOT NULL,
+                    Email TEXT NOT NULL
+                );
+            ";
+            cmd.ExecuteNonQuery();
         }
 
         public SQLiteConnection GetConnection()

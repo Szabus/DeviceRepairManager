@@ -2,7 +2,7 @@
 
 namespace DeviceRepairManager.Models
 {
-    internal class Repair
+    public class Repair
     {
         public int RepairId { get; set; }
         public int DeviceId { get; set; }
