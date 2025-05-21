@@ -16,7 +16,8 @@ namespace DeviceRepairManager.Models
         public int RepairCount { get; set; }
         public bool IsUnderRepair { get; set; }
 
-        
+        private decimal _loggedHours = 0;
+
         public void UpdateRepairStatus(string newStatus)
         {
             Status = newStatus;
@@ -31,7 +32,7 @@ namespace DeviceRepairManager.Models
       
         public void LogWorkHours(decimal hours)
         {
-            
+            _loggedHours += hours;
         }
     }
 }
