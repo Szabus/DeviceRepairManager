@@ -1,3 +1,5 @@
+using DeviceRepairManager.Data;
+
 namespace DeviceRepairManager
 {
     internal static class Program
@@ -11,7 +13,8 @@ namespace DeviceRepairManager
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+            var dbService = new DatabaseService("device_repair.db");
+            Application.Run(new Mainform());
         }
     }
 }

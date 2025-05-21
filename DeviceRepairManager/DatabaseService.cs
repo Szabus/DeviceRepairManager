@@ -3,7 +3,7 @@ using System.Data.SQLite;
 
 namespace DeviceRepairManager.Data
 {
-    internal class DatabaseService
+    public class DatabaseService
     {
         private readonly string _connectionString;
 

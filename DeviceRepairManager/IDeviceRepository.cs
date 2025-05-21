@@ -1,6 +1,7 @@
 ﻿using DeviceRepairManager.Models;
 using System.Collections.Generic;
 
+
 namespace DeviceRepairManager.Repositories
 {
     public interface IDeviceRepository
