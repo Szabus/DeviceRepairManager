@@ -132,5 +132,30 @@ namespace DeviceRepairManager.Data
             conn.Open();
             return conn;
         }
+
+        public void AddTestCustomer()
+        {
+            using var conn = GetConnection();
+            using var cmd = new SQLiteCommand(conn);
+
+            cmd.CommandText = @"
+        INSERT INTO Customers 
+        (Name, ContactInfo, Address, Email, PhoneNumber, RegistrationDate, IsVIP, PreferredContactMethod, LastInteractionDate)
+        VALUES 
+        (@Name, @ContactInfo, @Address, @Email, @PhoneNumber, @RegistrationDate, @IsVIP, @PreferredContactMethod, @LastInteractionDate)
+    ";
+
+            cmd.Parameters.AddWithValue("@Name", "Teszt Elek");
+            cmd.Parameters.AddWithValue("@ContactInfo", "Teszt utca 1.");
+            cmd.Parameters.AddWithValue("@Address", "Budapest");
+            cmd.Parameters.AddWithValue("@Email", "teszt@pelda.hu");
+            cmd.Parameters.AddWithValue("@PhoneNumber", "0612345678");
+            cmd.Parameters.AddWithValue("@RegistrationDate", DateTime.Now.ToString("yyyy-MM-dd"));
+            cmd.Parameters.AddWithValue("@IsVIP", false);
+            cmd.Parameters.AddWithValue("@PreferredContactMethod", "Email");
+            cmd.Parameters.AddWithValue("@LastInteractionDate", DateTime.Now.ToString("yyyy-MM-dd"));
+
+            cmd.ExecuteNonQuery();
+        }
     }
 }

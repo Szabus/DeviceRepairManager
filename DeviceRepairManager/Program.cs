@@ -10,11 +10,15 @@ namespace DeviceRepairManager
         [STAThread]
         static void Main()
         {
+
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            var dbService = new DatabaseService("device_repair.db");
-            Application.Run(new Mainform());
+            //Application.Run(new Mainform());
+            //Application.Run(new CustomerForm());
+            DatabaseService db = new DatabaseService("adatbazis_nev.db");
+            db.AddTestCustomer();
+           Application.Run(new LoginForm());
         }
     }
 }
