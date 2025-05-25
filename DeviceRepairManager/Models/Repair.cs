@@ -18,21 +18,5 @@ namespace DeviceRepairManager.Models
 
         private decimal _loggedHours = 0;
 
-        public void UpdateRepairStatus(string newStatus)
-        {
-            Status = newStatus;
-            if (newStatus?.ToLower() == "kész")
-            {
-                EndDate = DateTime.Now;
-                IsUnderRepair = false;
-                RepairCount++;
-            }
-        }
-
-      
-        public void LogWorkHours(decimal hours)
-        {
-            _loggedHours += hours;
-        }
     }
 }

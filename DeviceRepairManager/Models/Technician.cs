@@ -16,6 +16,8 @@ namespace DeviceRepairManager.Models
 
         public decimal TotalWorkHours { get;  set; } = 0;
 
+        public string? PasswordHash { get; set; }
+
         public void LogWorkHours(decimal hours)
         {
             TotalWorkHours += hours;

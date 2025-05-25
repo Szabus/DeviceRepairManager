@@ -20,7 +20,7 @@ namespace DeviceRepairManager.Data
 
             using var cmd = new SQLiteCommand(connection);
 
-            
+
             cmd.CommandText = @"
                 CREATE TABLE IF NOT EXISTS Customers (
                     CustomerId           INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -33,11 +33,12 @@ namespace DeviceRepairManager.Data
                     IsVIP                INTEGER NOT NULL,
                     PreferredContactMethod TEXT,
                     LastInteractionDate  TEXT
+,                   PasswordHash         TEXT NOT NULL
                 );
             ";
             cmd.ExecuteNonQuery();
 
-           
+
             cmd.CommandText = @"
                 CREATE TABLE IF NOT EXISTS Devices (
                     DeviceId        INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -56,7 +57,7 @@ namespace DeviceRepairManager.Data
             ";
             cmd.ExecuteNonQuery();
 
-         
+
             cmd.CommandText = @"
                 CREATE TABLE IF NOT EXISTS Repairs (
                     RepairId            INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -78,7 +79,7 @@ namespace DeviceRepairManager.Data
             ";
             cmd.ExecuteNonQuery();
 
-            
+
             cmd.CommandText = @"
                 CREATE TABLE IF NOT EXISTS WorkOrders (
                     WorkOrderId         INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -96,7 +97,7 @@ namespace DeviceRepairManager.Data
             ";
             cmd.ExecuteNonQuery();
 
-           
+
             cmd.CommandText = @"
                 CREATE TABLE IF NOT EXISTS Technicians (
                     TechnicianId        INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -109,7 +110,8 @@ namespace DeviceRepairManager.Data
                     HireDate            TEXT    NOT NULL,
                     IsOnLeave           INTEGER NOT NULL,
                     CompletedRepairs    INTEGER NOT NULL,
-                    Shift               TEXT
+                    Shift               TEXT,
+                    PasswordHash        TEXT NOT NULL
                 );
             ";
             cmd.ExecuteNonQuery();
@@ -124,6 +126,8 @@ namespace DeviceRepairManager.Data
                 );
             ";
             cmd.ExecuteNonQuery();
+
+            SeedInitialUsers(connection);
         }
 
         public SQLiteConnection GetConnection()
@@ -133,28 +137,32 @@ namespace DeviceRepairManager.Data
             return conn;
         }
 
-        public void AddTestCustomer()
+        private void SeedInitialUsers(SQLiteConnection connection)
         {
-            using var conn = GetConnection();
-            using var cmd = new SQLiteCommand(conn);
+            using var cmd = new SQLiteCommand(connection);
 
+            
             cmd.CommandText = @"
-        INSERT INTO Customers 
-        (Name, ContactInfo, Address, Email, PhoneNumber, RegistrationDate, IsVIP, PreferredContactMethod, LastInteractionDate)
-        VALUES 
-        (@Name, @ContactInfo, @Address, @Email, @PhoneNumber, @RegistrationDate, @IsVIP, @PreferredContactMethod, @LastInteractionDate)
+        INSERT INTO Admins (Username, PasswordHash, Name, Email)
+        SELECT 'admin', 'admin123', 'Rendszergazda', 'admin@example.com'
+        WHERE NOT EXISTS (SELECT 1 FROM Admins WHERE Username = 'admin');
     ";
+            cmd.ExecuteNonQuery();
 
-            cmd.Parameters.AddWithValue("@Name", "Teszt Elek");
-            cmd.Parameters.AddWithValue("@ContactInfo", "Teszt utca 1.");
-            cmd.Parameters.AddWithValue("@Address", "Budapest");
-            cmd.Parameters.AddWithValue("@Email", "teszt@pelda.hu");
-            cmd.Parameters.AddWithValue("@PhoneNumber", "0612345678");
-            cmd.Parameters.AddWithValue("@RegistrationDate", DateTime.Now.ToString("yyyy-MM-dd"));
-            cmd.Parameters.AddWithValue("@IsVIP", false);
-            cmd.Parameters.AddWithValue("@PreferredContactMethod", "Email");
-            cmd.Parameters.AddWithValue("@LastInteractionDate", DateTime.Now.ToString("yyyy-MM-dd"));
+            
+            cmd.CommandText = @"
+        INSERT INTO Customers (Name, ContactInfo, Address, Email, PhoneNumber, RegistrationDate, IsVIP, PreferredContactMethod, LastInteractionDate, PasswordHash)
+        SELECT 'Teszt Ügyfél', '06201234567', 'Teszt utca 1', 'customer@example.com', '06201234567', datetime('now'), 0, 'Email', datetime('now'), 'customer123'
+        WHERE NOT EXISTS (SELECT 1 FROM Customers WHERE Email = 'customer@example.com');
+    ";
+            cmd.ExecuteNonQuery();
 
+            
+            cmd.CommandText = @"
+        INSERT INTO Technicians (Name, Expertise, IsAvailable, TotalWorkHours, Email, PhoneNumber, HireDate, IsOnLeave, CompletedRepairs, Shift, PasswordHash)
+        SELECT 'Technikus Béla', 'Laptop javítás', 1, 0.0, 'tech@example.com', '06201112222', datetime('now'), 0, 0, 'Reggel', 'tech123'
+        WHERE NOT EXISTS (SELECT 1 FROM Technicians WHERE Email = 'tech@example.com');
+    ";
             cmd.ExecuteNonQuery();
         }
     }

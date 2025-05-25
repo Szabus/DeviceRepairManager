@@ -16,8 +16,7 @@ namespace DeviceRepairManager
             ApplicationConfiguration.Initialize();
             //Application.Run(new Mainform());
             //Application.Run(new CustomerForm());
-            DatabaseService db = new DatabaseService("adatbazis_nev.db");
-            db.AddTestCustomer();
+            DatabaseService db = new DatabaseService("repair.db");
            Application.Run(new LoginForm());
         }
     }

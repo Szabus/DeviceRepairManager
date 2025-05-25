@@ -13,13 +13,4 @@
     public string? Location { get; set; }
     public string? Color { get; set; }
 
-    public string GetDeviceSummary()
-    {
-        return $"{Brand} {Model} - SN: {SerialNumber}";
-    }
-
-    public bool NeedsRepair()
-    {
-        return Condition == "Hibás";
-    }
 }

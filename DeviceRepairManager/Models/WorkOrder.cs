@@ -18,15 +18,5 @@ namespace DeviceRepairManager.Models
         public string? Notes { get; set; }
         public double HoursWorked { get; set; }
 
-        public void CloseWorkOrder()
-        {
-            CompletionDate = DateTime.Now;
-            Status = "Kész";
-        }
-
-        public void AddNote(string note)
-        {
-            Notes += (Notes == null ? "" : "\n") + note;
-        }
     }
 }

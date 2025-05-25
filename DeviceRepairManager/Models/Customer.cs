@@ -14,33 +14,7 @@ namespace DeviceRepairManager.Models
         public string? PhoneNumber { get; set; }
         public DateTime RegistrationDate { get; set; }
         public bool IsVIP { get; set; }
-
-        public Repair SubmitRepairRequest(int deviceId, string problemDescription)
-        {
-            return new Repair
-            {
-                DeviceId = deviceId,
-                CustomerId = this.CustomerId,
-                StartDate = DateTime.Now,
-                Status = "Leadva",
-                Description = problemDescription,
-                CustomerApproved = true
-            };
-        }
-
-        public List<string> TrackRepairStatus(List<Repair> allRepairs)
-        {
-            var myRepairs = allRepairs
-                .Where(r => r.CustomerId == this.CustomerId && r.CustomerApproved && r.Status != "Kész")
-                .Select(r => $"Eszköz #{r.DeviceId} - Állapot: {r.Status}")
-                .ToList();
-
-            return myRepairs;
-        }
-
-        public void UpdateContactInfo(string newContact)
-        {
-            ContactInfo = newContact;
-        }
+        public string? PasswordHash { get; set; }
+   
     }
 }
