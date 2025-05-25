@@ -111,7 +111,7 @@
             btnSubmitRepair.TabIndex = 6;
             btnSubmitRepair.Text = "Szervizigény leadása\n\n";
             btnSubmitRepair.UseVisualStyleBackColor = true;
-            btnSubmitRepair.Click += btnSubmitRepair_Click;
+           // btnSubmitRepair.Click += btnSubmitRepair_Click;
             // 
             // CustomerDashboardForm
             // 

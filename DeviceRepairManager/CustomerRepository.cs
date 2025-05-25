@@ -1,91 +1,54 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using DeviceRepairManager.Models;
 using System.Data.SQLite;
-using DeviceRepairManager.Models;
 
-namespace DeviceRepairManager.Data
+public class CustomerRepository
 {
-    internal class CustomerRepository : ICustomerRepository
+    private readonly SQLiteConnection _conn;
+
+    public CustomerRepository(SQLiteConnection connection)
     {
-        private readonly DatabaseService _db;
+        _conn = connection;
+    }
 
-        public CustomerRepository(DatabaseService db) => _db = db;
+    public void CreateRepairRequest(int customerId, int deviceId, string description)
+    {
+        using var cmd = new SQLiteCommand(@"
+            INSERT INTO Repairs (DeviceId, CustomerId, StartDate, Status, Description, CustomerApproved, RepairCount, IsUnderRepair)
+            VALUES (@deviceId, @customerId, datetime('now'), 'Requested', @description, 0, 1, 1)", _conn);
 
-        public void Add(Customer customer)
+        cmd.Parameters.AddWithValue("@deviceId", deviceId);
+        cmd.Parameters.AddWithValue("@customerId", customerId);
+        cmd.Parameters.AddWithValue("@description", description);
+
+        cmd.ExecuteNonQuery();
+    }
+
+    
+    public List<Repair> GetRepairsByCustomer(int customerId)
+    {
+        var repairs = new List<Repair>();
+
+        using var cmd = new SQLiteCommand("SELECT * FROM Repairs WHERE CustomerId = @customerId", _conn);
+        cmd.Parameters.AddWithValue("@customerId", customerId);
+
+        using var reader = cmd.ExecuteReader();
+
+        while (reader.Read())
         {
-            using var conn = _db.GetConnection();
-            using var cmd = conn.CreateCommand();
-            cmd.CommandText = @"
-                INSERT INTO Customers
-                  (Name, ContactInfo, Address, Email, PhoneNumber, RegistrationDate, IsVIP)
-                VALUES
-                  (@Name, @ContactInfo, @Address, @Email, @PhoneNumber, @RegistrationDate, @IsVIP);
-            ";
-            cmd.Parameters.AddWithValue("@Name", customer.Name ?? "");
-            cmd.Parameters.AddWithValue("@ContactInfo", customer.ContactInfo ?? "");
-            cmd.Parameters.AddWithValue("@Address", customer.Address ?? "");
-            cmd.Parameters.AddWithValue("@Email", customer.Email ?? "");
-            cmd.Parameters.AddWithValue("@PhoneNumber", customer.PhoneNumber ?? "");
-            cmd.Parameters.AddWithValue("@RegistrationDate", customer.RegistrationDate.ToString("o"));
-            cmd.Parameters.AddWithValue("@IsVIP", customer.IsVIP ? 1 : 0);
-            cmd.ExecuteNonQuery();
-        }
-
-        public List<Customer> GetAll()
-        {
-            var list = new List<Customer>();
-            using var conn = _db.GetConnection();
-            using var cmd = conn.CreateCommand();
-            cmd.CommandText = "SELECT * FROM Customers";
-            using var rdr = cmd.ExecuteReader();
-            while (rdr.Read())
+            repairs.Add(new Repair
             {
-                list.Add(new Customer
-                {
-                    CustomerId = rdr.GetInt32(0),
-                    Name = rdr.GetString(1),
-                    ContactInfo = rdr.GetString(2),
-                    Address = rdr.GetString(3),
-                    Email = rdr.GetString(4),
-                    PhoneNumber = rdr.GetString(5),
-                    RegistrationDate = DateTime.Parse(rdr.GetString(6)),
-                    IsVIP = rdr.GetInt32(7) == 1
-                });
-            }
-            return list;
+                RepairId = Convert.ToInt32(reader["RepairId"]),
+                DeviceId = Convert.ToInt32(reader["DeviceId"]),
+                CustomerId = Convert.ToInt32(reader["CustomerId"]),
+                StartDate = DateTime.Parse(reader["StartDate"].ToString()),
+                Status = reader["Status"].ToString(),
+                Description = reader["Description"].ToString(),
+                CustomerApproved = Convert.ToBoolean(reader["CustomerApproved"]),
+                RepairCount = Convert.ToInt32(reader["RepairCount"]),
+                IsUnderRepair = Convert.ToBoolean(reader["IsUnderRepair"]),
+            });
         }
 
-        public void Update(Customer customer)
-        {
-            using var conn = _db.GetConnection();
-            using var cmd = conn.CreateCommand();
-            cmd.CommandText = @"
-                UPDATE Customers SET
-                  Name = @Name,
-                  ContactInfo = @ContactInfo,
-                  Address = @Address,
-                  Email = @Email,
-                  PhoneNumber = @PhoneNumber,
-                  IsVIP = @IsVIP
-                WHERE CustomerId = @CustomerId;
-            ";
-            cmd.Parameters.AddWithValue("@Name", customer.Name ?? "");
-            cmd.Parameters.AddWithValue("@ContactInfo", customer.ContactInfo ?? "");
-            cmd.Parameters.AddWithValue("@Address", customer.Address ?? "");
-            cmd.Parameters.AddWithValue("@Email", customer.Email ?? "");
-            cmd.Parameters.AddWithValue("@PhoneNumber", customer.PhoneNumber ?? "");
-            cmd.Parameters.AddWithValue("@IsVIP", customer.IsVIP ? 1 : 0);
-            cmd.Parameters.AddWithValue("@CustomerId", customer.CustomerId);
-            cmd.ExecuteNonQuery();
-        }
-
-        public void Delete(int customerId)
-        {
-            using var conn = _db.GetConnection();
-            using var cmd = conn.CreateCommand();
-            cmd.CommandText = "DELETE FROM Customers WHERE CustomerId = @CustomerId";
-            cmd.Parameters.AddWithValue("@CustomerId", customerId);
-            cmd.ExecuteNonQuery();
-        }
+        return repairs;
     }
 }

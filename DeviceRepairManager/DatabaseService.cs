@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data.SQLite;
 
-namespace DeviceRepairManager.Data
+namespace DeviceRepairManager
 {
     public class DatabaseService
     {
@@ -100,18 +100,18 @@ namespace DeviceRepairManager.Data
 
             cmd.CommandText = @"
                 CREATE TABLE IF NOT EXISTS Technicians (
-                    TechnicianId        INTEGER PRIMARY KEY AUTOINCREMENT,
-                    Name                TEXT    NOT NULL,
-                    Expertise           TEXT,
-                    IsAvailable         INTEGER NOT NULL,
-                    TotalWorkHours      REAL    NOT NULL,
-                    Email               TEXT,
-                    PhoneNumber         TEXT,
-                    HireDate            TEXT    NOT NULL,
-                    IsOnLeave           INTEGER NOT NULL,
-                    CompletedRepairs    INTEGER NOT NULL,
-                    Shift               TEXT,
-                    PasswordHash        TEXT NOT NULL
+                    TechnicianId INTEGER PRIMARY KEY AUTOINCREMENT,
+                    Name TEXT NOT NULL,
+                    Expertise TEXT,
+                    IsAvailable INTEGER NOT NULL DEFAULT 1,
+                    TotalWorkHours REAL DEFAULT 0,
+                    Email TEXT,
+                    PhoneNumber TEXT,
+                    HireDate TEXT NOT NULL,
+                    IsOnLeave INTEGER NOT NULL DEFAULT 0,
+                    CompletedRepairs INTEGER DEFAULT 0,
+                    Shift TEXT,
+                    PasswordHash TEXT
                 );
             ";
             cmd.ExecuteNonQuery();
@@ -157,12 +157,12 @@ namespace DeviceRepairManager.Data
     ";
             cmd.ExecuteNonQuery();
 
-            
+
             cmd.CommandText = @"
         INSERT INTO Technicians (Name, Expertise, IsAvailable, TotalWorkHours, Email, PhoneNumber, HireDate, IsOnLeave, CompletedRepairs, Shift, PasswordHash)
         SELECT 'Technikus Béla', 'Laptop javítás', 1, 0.0, 'tech@example.com', '06201112222', datetime('now'), 0, 0, 'Reggel', 'tech123'
         WHERE NOT EXISTS (SELECT 1 FROM Technicians WHERE Email = 'tech@example.com');
-    ";
+";
             cmd.ExecuteNonQuery();
         }
     }

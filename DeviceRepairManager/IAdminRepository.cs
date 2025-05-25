@@ -4,10 +4,12 @@ namespace DeviceRepairManager.Repositories
 {
     public interface IAdminRepository
     {
-        List<Admin> GetAllAdmins();
-        Admin? GetAdminById(int id);
-        void AddAdmin(Admin admin);
-        void UpdateAdmin(Admin admin);
-        void DeleteAdmin(int id);
+        public List<Customer> GetAllCustomers();
+
+        public void AddCustomer(Customer customer);
+
+        public List<Technician> GetAllTechnicians();
+
+        public List<WorkOrder> GetAllWorkOrders();
     }
 }

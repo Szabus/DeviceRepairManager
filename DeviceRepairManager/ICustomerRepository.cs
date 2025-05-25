@@ -5,9 +5,10 @@ namespace DeviceRepairManager.Data
 {
     internal interface ICustomerRepository
     {
-        void Add(Customer customer);
-        List<Customer> GetAll();
-        void Update(Customer customer);
-        void Delete(int customerId);
+        public void CreateRepairRequest(int customerId, int deviceId, string description);
+
+        public List<Repair> GetRepairsByCustomer(int customerId);
+
+
     }
 }

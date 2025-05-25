@@ -14,9 +14,11 @@ namespace DeviceRepairManager
 {
     public partial class LoginForm : Form
     {
-        public LoginForm()
+        private readonly SQLiteConnection _conn;
+        public LoginForm(SQLiteConnection connection)
         {
             InitializeComponent();
+            _conn = connection;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -55,25 +57,21 @@ namespace DeviceRepairManager
                 return;
             }
 
-            // Példányosítsd az adatforrásokat (pl. repository)
-            var db = new DatabaseService("adatbazis_nev.db");
-            var conn = db.GetConnection();
-
-            using var cmd = new SQLiteCommand("SELECT * FROM Admins WHERE Username = @u AND PasswordHash = @p", conn);
+            using var cmd = new SQLiteCommand("SELECT * FROM Admins WHERE Username = @u AND PasswordHash = @p", _conn);
             cmd.Parameters.AddWithValue("@u", username);
-            cmd.Parameters.AddWithValue("@p", password); // Hash-elt jelszót használj később!
+            cmd.Parameters.AddWithValue("@p", password);
 
-            //using var reader = cmd.ExecuteReader();
+            using var reader = cmd.ExecuteReader();
 
-            //if (reader.Read())
-            //{
-            //    // Admin belépés
-            //    var adminForm = new AdminDashboardForm(); // ezt hozzuk majd létre
-            //    adminForm.Show();
-            //    this.Hide();
-            //    return;
-            //}
-            cmd.CommandText = "SELECT * FROM Customers WHERE Email = @u AND PhoneNumber = @p";
+            if (reader.Read())
+            {
+                // Admin belépés
+                var adminForm = new AdminDashboardForm(_conn); // ezt hozzuk majd létre
+                adminForm.Show();
+                this.Hide();
+                return;
+            }
+            cmd.CommandText = "SELECT * FROM Customers WHERE Email = @u AND PasswordHash = @p";
             //reader.Close();
             //reader.Dispose();
             cmd.Parameters.Clear();
@@ -82,14 +80,14 @@ namespace DeviceRepairManager
 
             using var custReader = cmd.ExecuteReader();
 
-            if (custReader.Read())
-            {
-                int customerId = Convert.ToInt32(custReader["CustomerId"]);
-                var customerForm = new CustomerDashboardForm(customerId);
-                customerForm.Show();
-                this.Hide();
-                return;
-            }
+            //if (custReader.Read())
+            //{
+            //    int customerId = Convert.ToInt32(custReader["CustomerId"]);
+            //    var customerForm = new CustomerDashboardForm(customerId);
+            //    customerForm.Show();
+            //    this.Hide();
+            //    return;
+            //}
 
             //// Ugyanez Technician-re
             //cmd.CommandText = "SELECT * FROM Technicians WHERE Email = @u AND PhoneNumber = @p";

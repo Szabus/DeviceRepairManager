@@ -1,5 +1,6 @@
 using DeviceRepairManager.Data;
 
+
 namespace DeviceRepairManager
 {
     internal static class Program
@@ -10,14 +11,20 @@ namespace DeviceRepairManager
         [STAThread]
         static void Main()
         {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
 
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
-            ApplicationConfiguration.Initialize();
-            //Application.Run(new Mainform());
-            //Application.Run(new CustomerForm());
-            DatabaseService db = new DatabaseService("repair.db");
-           Application.Run(new LoginForm());
+            
+            var db = new DatabaseService("repair.db");
+
+
+            var conn = db.GetConnection();
+
+            
+            Application.Run(new LoginForm(conn));
+
+            
+            conn.Close();
         }
     }
 }

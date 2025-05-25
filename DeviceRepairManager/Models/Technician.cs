@@ -14,13 +14,14 @@ namespace DeviceRepairManager.Models
 
         public bool IsAvailable { get; set; }
 
-        public decimal TotalWorkHours { get;  set; } = 0;
+        public double TotalWorkHours { get;  set; } = 0;
 
+        public string Email { get; set; }
+        public string PhoneNumber { get; set; }
+        public DateTime HireDate { get; set; }
+        public bool IsOnLeave { get; set; }
+        public int CompletedRepairs { get; set; }
+        public string Shift { get; set; }
         public string? PasswordHash { get; set; }
-
-        public void LogWorkHours(decimal hours)
-        {
-            TotalWorkHours += hours;
-        }
     }
 }
