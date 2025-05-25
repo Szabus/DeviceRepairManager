@@ -17,6 +17,8 @@ namespace DeviceRepairManager.Models
         public string? Priority { get; set; }
         public string? Notes { get; set; }
         public double HoursWorked { get; set; }
+        public bool RequiresApproval { get; set; }      
+        public string? CreatedBy { get; set; }           
 
     }
 }

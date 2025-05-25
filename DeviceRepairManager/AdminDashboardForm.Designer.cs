@@ -51,6 +51,7 @@
             txtName = new TextBox();
             dgvCustomers = new DataGridView();
             tabTechnician = new TabPage();
+            txtTechnicianId = new TextBox();
             btnDeleteTech = new Button();
             btnUpdateTech = new Button();
             btnAddTech = new Button();
@@ -79,7 +80,7 @@
             dgvTechnicians = new DataGridView();
             tabWorkdOrders = new TabPage();
             label1 = new Label();
-            txtTechnicianId = new TextBox();
+            dgvWorkOrder = new DataGridView();
             tabControl1.SuspendLayout();
             tabCustomers.SuspendLayout();
             groupBox1.SuspendLayout();
@@ -88,6 +89,8 @@
             ((System.ComponentModel.ISupportInitialize)numCompletedRepairs).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numTotalWorkHours).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvTechnicians).BeginInit();
+            tabWorkdOrders.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvWorkOrder).BeginInit();
             SuspendLayout();
             // 
             // tabControl1
@@ -351,6 +354,14 @@
             tabTechnician.UseVisualStyleBackColor = true;
             tabTechnician.Click += tabPage2_Click;
             // 
+            // txtTechnicianId
+            // 
+            txtTechnicianId.Location = new Point(413, 165);
+            txtTechnicianId.Name = "txtTechnicianId";
+            txtTechnicianId.ReadOnly = true;
+            txtTechnicianId.Size = new Size(52, 27);
+            txtTechnicianId.TabIndex = 26;
+            // 
             // btnDeleteTech
             // 
             btnDeleteTech.Location = new Point(637, 500);
@@ -582,6 +593,7 @@
             // 
             // tabWorkdOrders
             // 
+            tabWorkdOrders.Controls.Add(dgvWorkOrder);
             tabWorkdOrders.Location = new Point(4, 29);
             tabWorkdOrders.Name = "tabWorkdOrders";
             tabWorkdOrders.Padding = new Padding(3);
@@ -600,13 +612,15 @@
             label1.TabIndex = 1;
             label1.Text = "Admin felület";
             // 
-            // txtTechnicianId
+            // dgvWorkOrder
             // 
-            txtTechnicianId.Location = new Point(413, 165);
-            txtTechnicianId.Name = "txtTechnicianId";
-            txtTechnicianId.ReadOnly = true;
-            txtTechnicianId.Size = new Size(52, 27);
-            txtTechnicianId.TabIndex = 26;
+            dgvWorkOrder.AccessibleName = "dgvWorkOrder";
+            dgvWorkOrder.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvWorkOrder.Location = new Point(3, 3);
+            dgvWorkOrder.Name = "dgvWorkOrder";
+            dgvWorkOrder.RowHeadersWidth = 51;
+            dgvWorkOrder.Size = new Size(674, 148);
+            dgvWorkOrder.TabIndex = 1;
             // 
             // AdminDashboardForm
             // 
@@ -627,6 +641,8 @@
             ((System.ComponentModel.ISupportInitialize)numCompletedRepairs).EndInit();
             ((System.ComponentModel.ISupportInitialize)numTotalWorkHours).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvTechnicians).EndInit();
+            tabWorkdOrders.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvWorkOrder).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -686,5 +702,6 @@
         private Button btnUpdateTech;
         private Button btnAddTech;
         private TextBox txtTechnicianId;
+        private DataGridView dgvWorkOrder;
     }
 }

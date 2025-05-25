@@ -21,8 +21,8 @@ namespace DeviceRepairManager.Repositories
             var command = connection.CreateCommand();
             command.CommandText =
                 @"INSERT INTO Devices 
-                  (Type, Brand, Model, SerialNumber, CustomerId, PurchaseDate, WarrantyStatus, Condition, Location, Color)
-                  VALUES (@Type, @Brand, @Model, @SerialNumber, @CustomerId, @PurchaseDate, @WarrantyStatus, @Condition, @Location, @Color)";
+                  (Type, Brand, Model, SerialNumber, CustomerId, PurchaseDate, WarrantyStatus, Location, Color)
+                  VALUES (@Type, @Brand, @Model, @SerialNumber, @CustomerId, @PurchaseDate, @WarrantyStatus, @Location, @Color)";
             command.Parameters.AddWithValue("@Type", device.Type ?? "");
             command.Parameters.AddWithValue("@Brand", device.Brand ?? "");
             command.Parameters.AddWithValue("@Model", device.Model ?? "");
@@ -30,7 +30,6 @@ namespace DeviceRepairManager.Repositories
             command.Parameters.AddWithValue("@CustomerId", device.CustomerId);
             command.Parameters.AddWithValue("@PurchaseDate", device.PurchaseDate);
             command.Parameters.AddWithValue("@WarrantyStatus", device.WarrantyStatus ?? "");
-            command.Parameters.AddWithValue("@Condition", device.Condition ?? "");
             command.Parameters.AddWithValue("@Location", device.Location ?? "");
             command.Parameters.AddWithValue("@Color", device.Color ?? "");
 
@@ -65,7 +64,6 @@ namespace DeviceRepairManager.Repositories
             command.Parameters.AddWithValue("@CustomerId", device.CustomerId);
             command.Parameters.AddWithValue("@PurchaseDate", device.PurchaseDate);
             command.Parameters.AddWithValue("@WarrantyStatus", device.WarrantyStatus ?? "");
-            command.Parameters.AddWithValue("@Condition", device.Condition ?? "");
             command.Parameters.AddWithValue("@Location", device.Location ?? "");
             command.Parameters.AddWithValue("@Color", device.Color ?? "");
 
@@ -151,9 +149,8 @@ namespace DeviceRepairManager.Repositories
                 CustomerId = reader.GetInt32(5),
                 PurchaseDate = reader.GetDateTime(6),
                 WarrantyStatus = reader.GetString(7),
-                Condition = reader.GetString(8),
-                Location = reader.GetString(9),
-                Color = reader.GetString(10)
+                Location = reader.GetString(8),
+                Color = reader.GetString(9)
             };
         }
     }
