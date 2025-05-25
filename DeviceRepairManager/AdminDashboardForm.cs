@@ -21,6 +21,7 @@ namespace DeviceRepairManager
             InitializeComponent();
             _adminRepo = new AdminRepository(conn);
             LoadCustomers();
+            LoadTechnicians();
         }
 
         private void LoadCustomers()
@@ -44,7 +45,7 @@ namespace DeviceRepairManager
             txtPassword.Text = customer.PhoneNumber;
             dtpRegistrationDate.Value = customer.RegistrationDate;
             chkIsVIP.Checked = customer.IsVIP;
-            txtPassword.Text = customer.PasswordHash; 
+            txtPassword.Text = customer.PasswordHash;
         }
 
         private void btnAddCustomer_Click(object sender, EventArgs e)
@@ -58,7 +59,7 @@ namespace DeviceRepairManager
                 PhoneNumber = txtPhoneNumber.Text,
                 RegistrationDate = dtpRegistrationDate.Value,
                 IsVIP = chkIsVIP.Checked,
-                PasswordHash = txtPassword.Text // itt később jelszó hash-elés kell!
+                PasswordHash = txtPassword.Text
             };
 
             try
@@ -66,7 +67,7 @@ namespace DeviceRepairManager
                 _adminRepo.AddCustomer(customer);
                 MessageBox.Show("Ügyfél hozzáadva!");
                 LoadCustomers();
-                ClearForm();
+                ClearCustomerForm();
             }
             catch (Exception ex)
             {
@@ -100,7 +101,7 @@ namespace DeviceRepairManager
                 _adminRepo.UpdateCustomer(customer);
                 MessageBox.Show("Ügyfél frissítve!");
                 LoadCustomers();
-                ClearForm();
+                ClearCustomerForm();
             }
             catch (Exception ex)
             {
@@ -124,7 +125,7 @@ namespace DeviceRepairManager
                     _adminRepo.DeleteCustomer(customerId);
                     MessageBox.Show("Ügyfél törölve!");
                     LoadCustomers();
-                    ClearForm();
+                    ClearCustomerForm();
                 }
                 catch (Exception ex)
                 {
@@ -133,7 +134,7 @@ namespace DeviceRepairManager
             }
         }
 
-        private void ClearForm()
+        private void ClearCustomerForm()
         {
             txtCustomerId.Text = "";
             txtName.Text = "";
@@ -146,6 +147,91 @@ namespace DeviceRepairManager
             txtPassword.Text = "";
         }
 
+        private void LoadTechnicians()
+        {
+            var technicians = _adminRepo.GetAllTechnicians();
+            dgvTechnicians.DataSource = technicians;
+        }
+        private void btnAddTechnician_Click(object sender, EventArgs e)
+        {
+            Technician tech = new Technician
+            {
+                Name = txtName2.Text,
+                Expertise = txtExpertise.Text,
+                IsAvailable = chkIsAvaliable.Checked,
+                TotalWorkHours = 0,
+                Email = txtEmail2.Text,
+                PhoneNumber = txtPhone2.Text,
+                HireDate = DateTime.Now,
+                IsOnLeave = chkIsOnLeave.Checked,
+                CompletedRepairs = 0,
+                Shift = cmbShift.Text,
+                PasswordHash = txtPassword2.Text
+            };
+
+            _adminRepo.AddTechnician(tech);
+            MessageBox.Show("Technikus hozzáadva.");
+            LoadTechnicians();
+            ClearTechnicianForm();
+        }
+
+        private void btnDeleteTechnician_Click(object sender, EventArgs e)
+        {
+            if (dgvTechnicians.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Válassz ki egy technikust.");
+                return;
+            }
+
+            int id = Convert.ToInt32(dgvTechnicians.SelectedRows[0].Cells["TechnicianId"].Value);
+            _adminRepo.DeleteTechnician(id);
+            MessageBox.Show("Technikus törölve.");
+            LoadTechnicians();
+            ClearTechnicianForm();
+        }
+
+        private void btnEditTechnician_Click(object sender, EventArgs e)
+        {
+
+            if (dgvTechnicians.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Válassz ki egy technikust.");
+                return;
+            }
+
+            int id = Convert.ToInt32(dgvTechnicians.SelectedRows[0].Cells["TechnicianId"].Value);
+
+            Technician updatedTech = new Technician
+            {
+                TechnicianId = id,
+                Name = txtName2.Text,
+                Expertise = txtExpertise.Text,
+                IsAvailable = chkIsAvaliable.Checked,
+                Email = txtEmail.Text,
+                PhoneNumber = txtPhone2.Text,
+                HireDate = DateTime.Now, 
+                IsOnLeave = chkIsOnLeave.Checked,
+                Shift = cmbShift.Text,
+                PasswordHash = txtPassword.Text
+            };
+
+            _adminRepo.UpdateTechnician(updatedTech);
+            MessageBox.Show("Technikus módosítva.");
+            LoadTechnicians();
+            ClearTechnicianForm();
+        }
+
+        private void ClearTechnicianForm()
+        {
+            txtName2.Text = "";
+            txtExpertise.Text = "";
+            chkIsAvaliable.Checked = false;
+            txtEmail2.Text = "";
+            txtPhone2.Text = "";
+            chkIsOnLeave.Checked = false;
+            cmbShift.SelectedIndex = -1; 
+            txtPassword2.Text = "";
+        }
         private void tabPage2_Click(object sender, EventArgs e)
         {
 
@@ -217,6 +303,66 @@ namespace DeviceRepairManager
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvTechnicians_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvTechnicians.SelectedRows.Count == 0 || dgvTechnicians.CurrentRow == null)
+                return;
+
+            var row = dgvTechnicians.SelectedRows[0];
+
+            if (row.IsNewRow) return;
+
+            txtName2.Text = row.Cells["Name"].Value?.ToString();
+            txtExpertise.Text = row.Cells["Expertise"].Value?.ToString();
+            chkIsAvaliable.Checked = Convert.ToBoolean(row.Cells["IsAvailable"].Value);
+            txtEmail2.Text = row.Cells["Email"].Value?.ToString();
+            txtPhone2.Text = row.Cells["PhoneNumber"].Value?.ToString();
+            chkIsOnLeave.Checked = Convert.ToBoolean(row.Cells["IsOnLeave"].Value);
+            cmbShift.Text = row.Cells["Shift"].Value?.ToString();
+            txtPassword2.Text = row.Cells["PasswordHash"].Value?.ToString();
+        }
+
+
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged_2(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox1_CheckedChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged_3(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox1_CheckedChanged_2(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged_4(object sender, EventArgs e)
         {
 
         }

@@ -51,12 +51,43 @@
             txtName = new TextBox();
             dgvCustomers = new DataGridView();
             tabTechnician = new TabPage();
+            btnDeleteTech = new Button();
+            btnUpdateTech = new Button();
+            btnAddTech = new Button();
+            txtPassword2 = new TextBox();
+            label16 = new Label();
+            cmbShift = new ComboBox();
+            label15 = new Label();
+            numCompletedRepairs = new NumericUpDown();
+            label14 = new Label();
+            chkIsOnLeave = new CheckBox();
+            lbIsOnLeave = new Label();
+            dtpHireDate = new DateTimePicker();
+            lblHireDate = new Label();
+            label13 = new Label();
+            txtPhone2 = new TextBox();
+            txtEmail2 = new TextBox();
+            label12 = new Label();
+            numTotalWorkHours = new NumericUpDown();
+            label11 = new Label();
+            chkIsAvaliable = new CheckBox();
+            label10 = new Label();
+            txtExpertise = new TextBox();
+            label9 = new Label();
+            txtName2 = new TextBox();
+            label8 = new Label();
+            dgvTechnicians = new DataGridView();
             tabWorkdOrders = new TabPage();
             label1 = new Label();
+            txtTechnicianId = new TextBox();
             tabControl1.SuspendLayout();
             tabCustomers.SuspendLayout();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCustomers).BeginInit();
+            tabTechnician.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numCompletedRepairs).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numTotalWorkHours).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvTechnicians).BeginInit();
             SuspendLayout();
             // 
             // tabControl1
@@ -284,6 +315,33 @@
             // 
             // tabTechnician
             // 
+            tabTechnician.Controls.Add(txtTechnicianId);
+            tabTechnician.Controls.Add(btnDeleteTech);
+            tabTechnician.Controls.Add(btnUpdateTech);
+            tabTechnician.Controls.Add(btnAddTech);
+            tabTechnician.Controls.Add(txtPassword2);
+            tabTechnician.Controls.Add(label16);
+            tabTechnician.Controls.Add(cmbShift);
+            tabTechnician.Controls.Add(label15);
+            tabTechnician.Controls.Add(numCompletedRepairs);
+            tabTechnician.Controls.Add(label14);
+            tabTechnician.Controls.Add(chkIsOnLeave);
+            tabTechnician.Controls.Add(lbIsOnLeave);
+            tabTechnician.Controls.Add(dtpHireDate);
+            tabTechnician.Controls.Add(lblHireDate);
+            tabTechnician.Controls.Add(label13);
+            tabTechnician.Controls.Add(txtPhone2);
+            tabTechnician.Controls.Add(txtEmail2);
+            tabTechnician.Controls.Add(label12);
+            tabTechnician.Controls.Add(numTotalWorkHours);
+            tabTechnician.Controls.Add(label11);
+            tabTechnician.Controls.Add(chkIsAvaliable);
+            tabTechnician.Controls.Add(label10);
+            tabTechnician.Controls.Add(txtExpertise);
+            tabTechnician.Controls.Add(label9);
+            tabTechnician.Controls.Add(txtName2);
+            tabTechnician.Controls.Add(label8);
+            tabTechnician.Controls.Add(dgvTechnicians);
             tabTechnician.Location = new Point(4, 29);
             tabTechnician.Name = "tabTechnician";
             tabTechnician.Padding = new Padding(3);
@@ -292,6 +350,235 @@
             tabTechnician.Text = "Szervizesek";
             tabTechnician.UseVisualStyleBackColor = true;
             tabTechnician.Click += tabPage2_Click;
+            // 
+            // btnDeleteTech
+            // 
+            btnDeleteTech.Location = new Point(637, 500);
+            btnDeleteTech.Name = "btnDeleteTech";
+            btnDeleteTech.Size = new Size(94, 29);
+            btnDeleteTech.TabIndex = 25;
+            btnDeleteTech.Text = "Törlés";
+            btnDeleteTech.UseVisualStyleBackColor = true;
+            btnDeleteTech.Click += btnDeleteTechnician_Click;
+            // 
+            // btnUpdateTech
+            // 
+            btnUpdateTech.Location = new Point(525, 500);
+            btnUpdateTech.Name = "btnUpdateTech";
+            btnUpdateTech.Size = new Size(94, 29);
+            btnUpdateTech.TabIndex = 24;
+            btnUpdateTech.Text = "Módosítás";
+            btnUpdateTech.UseVisualStyleBackColor = true;
+            btnUpdateTech.Click += btnEditTechnician_Click;
+            // 
+            // btnAddTech
+            // 
+            btnAddTech.Location = new Point(413, 500);
+            btnAddTech.Name = "btnAddTech";
+            btnAddTech.Size = new Size(95, 29);
+            btnAddTech.TabIndex = 23;
+            btnAddTech.Text = "Hozzáadás";
+            btnAddTech.UseVisualStyleBackColor = true;
+            btnAddTech.Click += btnAddTechnician_Click;
+            // 
+            // txtPassword2
+            // 
+            txtPassword2.Location = new Point(172, 502);
+            txtPassword2.Name = "txtPassword2";
+            txtPassword2.Size = new Size(189, 27);
+            txtPassword2.TabIndex = 22;
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Location = new Point(10, 504);
+            label16.Name = "label16";
+            label16.Size = new Size(51, 20);
+            label16.TabIndex = 21;
+            label16.Text = "Jelszó:";
+            // 
+            // cmbShift
+            // 
+            cmbShift.FormattingEnabled = true;
+            cmbShift.Items.AddRange(new object[] { "Reggel", "Délután", "Éjszaka" });
+            cmbShift.Location = new Point(172, 468);
+            cmbShift.Name = "cmbShift";
+            cmbShift.Size = new Size(151, 28);
+            cmbShift.TabIndex = 20;
+            cmbShift.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Location = new Point(10, 476);
+            label15.Name = "label15";
+            label15.Size = new Size(61, 20);
+            label15.TabIndex = 19;
+            label15.Text = "Műszak:";
+            // 
+            // numCompletedRepairs
+            // 
+            numCompletedRepairs.Location = new Point(172, 436);
+            numCompletedRepairs.Name = "numCompletedRepairs";
+            numCompletedRepairs.Size = new Size(51, 27);
+            numCompletedRepairs.TabIndex = 18;
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Location = new Point(10, 443);
+            label14.Name = "label14";
+            label14.Size = new Size(141, 20);
+            label14.TabIndex = 17;
+            label14.Text = "Befejezett javítások:";
+            // 
+            // chkIsOnLeave
+            // 
+            chkIsOnLeave.AutoSize = true;
+            chkIsOnLeave.Location = new Point(172, 409);
+            chkIsOnLeave.Name = "chkIsOnLeave";
+            chkIsOnLeave.Size = new Size(18, 17);
+            chkIsOnLeave.TabIndex = 16;
+            chkIsOnLeave.UseVisualStyleBackColor = true;
+            chkIsOnLeave.CheckedChanged += checkBox1_CheckedChanged_2;
+            // 
+            // lbIsOnLeave
+            // 
+            lbIsOnLeave.AutoSize = true;
+            lbIsOnLeave.Location = new Point(10, 409);
+            lbIsOnLeave.Name = "lbIsOnLeave";
+            lbIsOnLeave.Size = new Size(105, 20);
+            lbIsOnLeave.TabIndex = 15;
+            lbIsOnLeave.Text = "Szabadságon?";
+            // 
+            // dtpHireDate
+            // 
+            dtpHireDate.Location = new Point(172, 367);
+            dtpHireDate.Name = "dtpHireDate";
+            dtpHireDate.Size = new Size(189, 27);
+            dtpHireDate.TabIndex = 14;
+            // 
+            // lblHireDate
+            // 
+            lblHireDate.AutoSize = true;
+            lblHireDate.Location = new Point(10, 374);
+            lblHireDate.Name = "lblHireDate";
+            lblHireDate.Size = new Size(118, 20);
+            lblHireDate.TabIndex = 13;
+            lblHireDate.Text = "Felvétel dátuma:";
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Location = new Point(10, 341);
+            label13.Name = "label13";
+            label13.Size = new Size(95, 20);
+            label13.TabIndex = 12;
+            label13.Text = "Telefonszám:";
+            // 
+            // txtPhone2
+            // 
+            txtPhone2.Location = new Point(172, 334);
+            txtPhone2.Name = "txtPhone2";
+            txtPhone2.Size = new Size(189, 27);
+            txtPhone2.TabIndex = 11;
+            txtPhone2.TextChanged += textBox2_TextChanged_1;
+            // 
+            // txtEmail2
+            // 
+            txtEmail2.Location = new Point(172, 301);
+            txtEmail2.Name = "txtEmail2";
+            txtEmail2.Size = new Size(189, 27);
+            txtEmail2.TabIndex = 10;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(9, 308);
+            label12.Name = "label12";
+            label12.Size = new Size(49, 20);
+            label12.TabIndex = 9;
+            label12.Text = "Email:";
+            // 
+            // numTotalWorkHours
+            // 
+            numTotalWorkHours.Location = new Point(172, 265);
+            numTotalWorkHours.Name = "numTotalWorkHours";
+            numTotalWorkHours.Size = new Size(52, 27);
+            numTotalWorkHours.TabIndex = 8;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(9, 272);
+            label11.Name = "label11";
+            label11.Size = new Size(119, 20);
+            label11.TabIndex = 7;
+            label11.Text = "Teljes munkaóra:";
+            // 
+            // chkIsAvaliable
+            // 
+            chkIsAvaliable.AutoSize = true;
+            chkIsAvaliable.Location = new Point(172, 240);
+            chkIsAvaliable.Name = "chkIsAvaliable";
+            chkIsAvaliable.Size = new Size(18, 17);
+            chkIsAvaliable.TabIndex = 6;
+            chkIsAvaliable.UseVisualStyleBackColor = true;
+            chkIsAvaliable.CheckedChanged += checkBox1_CheckedChanged_1;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(9, 240);
+            label10.Name = "label10";
+            label10.Size = new Size(71, 20);
+            label10.TabIndex = 5;
+            label10.Text = "Elérhető?";
+            // 
+            // txtExpertise
+            // 
+            txtExpertise.Location = new Point(172, 198);
+            txtExpertise.Name = "txtExpertise";
+            txtExpertise.Size = new Size(189, 27);
+            txtExpertise.TabIndex = 4;
+            txtExpertise.TextChanged += textBox1_TextChanged_2;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(6, 205);
+            label9.Name = "label9";
+            label9.Size = new Size(85, 20);
+            label9.TabIndex = 3;
+            label9.Text = "Szakterület:";
+            // 
+            // txtName2
+            // 
+            txtName2.Location = new Point(172, 165);
+            txtName2.Name = "txtName2";
+            txtName2.Size = new Size(189, 27);
+            txtName2.TabIndex = 2;
+            txtName2.TextChanged += textBox1_TextChanged_1;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(9, 172);
+            label8.Name = "label8";
+            label8.Size = new Size(38, 20);
+            label8.TabIndex = 1;
+            label8.Text = "Név:";
+            // 
+            // dgvTechnicians
+            // 
+            dgvTechnicians.AccessibleName = "dgvTechnicians";
+            dgvTechnicians.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvTechnicians.Location = new Point(6, 6);
+            dgvTechnicians.Name = "dgvTechnicians";
+            dgvTechnicians.RowHeadersWidth = 51;
+            dgvTechnicians.Size = new Size(674, 148);
+            dgvTechnicians.TabIndex = 0;
+            dgvTechnicians.SelectionChanged += dgvTechnicians_SelectionChanged;
             // 
             // tabWorkdOrders
             // 
@@ -313,6 +600,14 @@
             label1.TabIndex = 1;
             label1.Text = "Admin felület";
             // 
+            // txtTechnicianId
+            // 
+            txtTechnicianId.Location = new Point(413, 165);
+            txtTechnicianId.Name = "txtTechnicianId";
+            txtTechnicianId.ReadOnly = true;
+            txtTechnicianId.Size = new Size(52, 27);
+            txtTechnicianId.TabIndex = 26;
+            // 
             // AdminDashboardForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -327,6 +622,11 @@
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCustomers).EndInit();
+            tabTechnician.ResumeLayout(false);
+            tabTechnician.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)numCompletedRepairs).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numTotalWorkHours).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvTechnicians).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -359,5 +659,32 @@
         private Button btnDeleteCustomer;
         private Button btnUpdateCustomer;
         private TextBox txtCustomerId;
+        private DataGridView dgvTechnicians;
+        private TextBox txtName2;
+        private Label label8;
+        private TextBox txtExpertise;
+        private Label label9;
+        private Label label10;
+        private CheckBox chkIsAvaliable;
+        private Label label13;
+        private TextBox txtPhone2;
+        private TextBox txtEmail2;
+        private Label label12;
+        private NumericUpDown numTotalWorkHours;
+        private Label label11;
+        private Label lblHireDate;
+        private Label lbIsOnLeave;
+        private DateTimePicker dtpHireDate;
+        private CheckBox chkIsOnLeave;
+        private ComboBox cmbShift;
+        private Label label15;
+        private NumericUpDown numCompletedRepairs;
+        private Label label14;
+        private TextBox txtPassword2;
+        private Label label16;
+        private Button btnDeleteTech;
+        private Button btnUpdateTech;
+        private Button btnAddTech;
+        private TextBox txtTechnicianId;
     }
 }

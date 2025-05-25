@@ -4,7 +4,13 @@ namespace DeviceRepairManager.Repositories
 {
     public interface ITechnicianRepository
     {
-        public void UpdateRepairStatus(int repairId, string newStatus, string notes = null, DateTime? completionDate = null);
+        public List<Technician> GetAllTechnicians();
+
+        public void AddTechnician(Technician tech);
+
+        public void UpdateTechnician(Technician tech);
+
+        public void DeleteTechnician(int technicianId);
 
     }
 }
