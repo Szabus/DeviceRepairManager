@@ -30,7 +30,6 @@
         {
             tabControl1 = new TabControl();
             tabCustomers = new TabPage();
-            button4 = new Button();
             btnDeleteCustomer = new Button();
             btnUpdateCustomer = new Button();
             btnAddCustomer = new Button();
@@ -73,7 +72,6 @@
             // 
             // tabCustomers
             // 
-            tabCustomers.Controls.Add(button4);
             tabCustomers.Controls.Add(btnDeleteCustomer);
             tabCustomers.Controls.Add(btnUpdateCustomer);
             tabCustomers.Controls.Add(btnAddCustomer);
@@ -88,16 +86,6 @@
             tabCustomers.UseVisualStyleBackColor = true;
             tabCustomers.Click += tabCustomers_Click;
             // 
-            // button4
-            // 
-            button4.Location = new Point(581, 168);
-            button4.Name = "button4";
-            button4.Size = new Size(94, 29);
-            button4.TabIndex = 5;
-            button4.Text = "Lista";
-            button4.UseVisualStyleBackColor = true;
-            button4.Click += button4_Click;
-            // 
             // btnDeleteCustomer
             // 
             btnDeleteCustomer.Location = new Point(243, 500);
@@ -106,6 +94,7 @@
             btnDeleteCustomer.TabIndex = 4;
             btnDeleteCustomer.Text = "Törlés";
             btnDeleteCustomer.UseVisualStyleBackColor = true;
+            btnDeleteCustomer.Click += btnDeleteCustomer_Click;
             // 
             // btnUpdateCustomer
             // 
@@ -115,6 +104,7 @@
             btnUpdateCustomer.TabIndex = 3;
             btnUpdateCustomer.Text = "Módosítás";
             btnUpdateCustomer.UseVisualStyleBackColor = true;
+            btnUpdateCustomer.Click += btnUpdateCustomer_Click;
             // 
             // btnAddCustomer
             // 
@@ -124,7 +114,7 @@
             btnAddCustomer.TabIndex = 2;
             btnAddCustomer.Text = "Hozzáadás";
             btnAddCustomer.UseVisualStyleBackColor = true;
-            btnAddCustomer.Click += button1_Click;
+            btnAddCustomer.Click += btnAddCustomer_Click;
             // 
             // groupBox1
             // 
@@ -217,7 +207,7 @@
             label2.Text = "Név:";
             label2.Click += label2_Click;
             // 
-            // checkBox1
+            // chkIsVIP
             // 
             chkIsVIP.AutoSize = true;
             chkIsVIP.Location = new Point(142, 287);
@@ -228,7 +218,7 @@
             chkIsVIP.UseVisualStyleBackColor = true;
             chkIsVIP.CheckedChanged += checkBox1_CheckedChanged;
             // 
-            // dateTimePicker1
+            // dtpRegistrationDate
             // 
             dtpRegistrationDate.Location = new Point(142, 254);
             dtpRegistrationDate.Name = "dtpRegistrationDate";
@@ -282,15 +272,15 @@
             txtName.TabIndex = 0;
             txtName.TextChanged += textBox1_TextChanged;
             // 
-            // dataGridView1
+            // dgvCustomers
             // 
             dgvCustomers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvCustomers.Location = new Point(9, 6);
-            dgvCustomers.Name = "dataGridView1";
+            dgvCustomers.Name = "dgvCustomers";
             dgvCustomers.RowHeadersWidth = 51;
             dgvCustomers.Size = new Size(666, 156);
             dgvCustomers.TabIndex = 0;
-            dgvCustomers.CellContentClick += dataGridView1_CellContentClick;
+            dgvCustomers.CellContentClick += dgvCustomers_SelectionChanged;
             // 
             // tabTechnician
             // 

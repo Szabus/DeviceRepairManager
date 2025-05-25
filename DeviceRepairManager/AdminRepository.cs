@@ -66,8 +66,8 @@ public class AdminRepository
     public void AddCustomer(Customer customer)
     {
         using var cmd = new SQLiteCommand(@"
-            INSERT INTO Customers (Name, ContactInfo, Address, Email, PhoneNumber, RegistrationDate, IsVIP, PreferredContactMethod, LastInteractionDate, PasswordHash)
-            VALUES (@name, @contact, @address, @email, @phone, @regDate, @isVip, @prefContact, @lastInteraction, @password)", _conn);
+            INSERT INTO Customers (Name, ContactInfo, Address, Email, PhoneNumber, RegistrationDate, IsVIP, PasswordHash)
+            VALUES (@name, @contact, @address, @email, @phone, @regDate, @isVip, @password)", _conn);
 
         cmd.Parameters.AddWithValue("@name", customer.Name);
         cmd.Parameters.AddWithValue("@contact", customer.ContactInfo);
@@ -91,8 +91,6 @@ public class AdminRepository
                 Email = @email,
                 PhoneNumber = @phone,
                 IsVIP = @isVip,
-                PreferredContactMethod = @prefContact,
-                LastInteractionDate = @lastInteraction,
                 PasswordHash = @password
             WHERE CustomerId = @id", _conn);
 

@@ -44,7 +44,7 @@ namespace DeviceRepairManager
             txtPassword.Text = customer.PhoneNumber;
             dtpRegistrationDate.Value = customer.RegistrationDate;
             chkIsVIP.Checked = customer.IsVIP;
-            txtPassword.Text = customer.PasswordHash; // figyelem, jelszó megjelenítés nem ajánlott!
+            txtPassword.Text = customer.PasswordHash; 
         }
 
         private void btnAddCustomer_Click(object sender, EventArgs e)

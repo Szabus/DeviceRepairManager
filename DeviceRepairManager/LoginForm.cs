@@ -66,7 +66,7 @@ namespace DeviceRepairManager
             if (reader.Read())
             {
                 // Admin belépés
-                var adminForm = new AdminDashboardForm(_conn); // ezt hozzuk majd létre
+                var adminForm = new AdminDashboardForm(_conn); 
                 adminForm.Show();
                 this.Hide();
                 return;
