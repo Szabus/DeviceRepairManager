@@ -9,7 +9,40 @@ public class WorkOrderRepository
     {
         _conn = conn;
     }
+    public List<WorkOrder> GetWorkOrdersByCustomer(int customerId)
+    {
+        var workOrders = new List<WorkOrder>();
 
+        using var cmd = new SQLiteCommand(@"
+        SELECT wo.WorkOrderId, wo.RepairId, wo.CreationDate, wo.CompletionDate, wo.Status,
+               wo.Priority, wo.Notes, wo.HoursWorked, wo.RequiresApproval, wo.CreatedBy
+        FROM WorkOrders wo
+        JOIN Repairs r ON wo.RepairId = r.RepairId
+        WHERE r.CustomerId = @customerId", _conn);
+
+        cmd.Parameters.AddWithValue("@customerId", customerId);
+
+        using var reader = cmd.ExecuteReader();
+
+        while (reader.Read())
+        {
+            workOrders.Add(new WorkOrder
+            {
+                WorkOrderId = Convert.ToInt32(reader["WorkOrderId"]),
+                RepairId = Convert.ToInt32(reader["RepairId"]),
+                CreationDate = DateTime.Parse(reader["CreationDate"].ToString()),
+                CompletionDate = string.IsNullOrEmpty(reader["CompletionDate"].ToString()) ? null : DateTime.Parse(reader["CompletionDate"].ToString()),
+                Status = reader["Status"].ToString(),
+                Priority = reader["Priority"].ToString(),
+                Notes = reader["Notes"].ToString(),
+                HoursWorked = Convert.ToDouble(reader["HoursWorked"]),
+                RequiresApproval = Convert.ToBoolean(reader["RequiresApproval"]),
+                CreatedBy = reader["CreatedBy"].ToString()
+            });
+        }
+
+        return workOrders;
+    }
     public List<WorkOrder> GetAllWorkOrders()
     {
         var list = new List<WorkOrder>();

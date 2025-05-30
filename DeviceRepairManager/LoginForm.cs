@@ -1,13 +1,6 @@
 ﻿using DeviceRepairManager.Data;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SQLite;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DeviceRepairManager
@@ -15,35 +8,11 @@ namespace DeviceRepairManager
     public partial class LoginForm : Form
     {
         private readonly SQLiteConnection _conn;
+
         public LoginForm(SQLiteConnection connection)
         {
             InitializeComponent();
             _conn = connection;
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -51,63 +20,64 @@ namespace DeviceRepairManager
             string username = txtUsername.Text.Trim();
             string password = txtPassword.Text;
 
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
             {
                 MessageBox.Show("Kérlek, tölts ki minden mezőt.");
                 return;
             }
 
-            using var cmd = new SQLiteCommand("SELECT * FROM Admins WHERE Username = @u AND PasswordHash = @p", _conn);
-            cmd.Parameters.AddWithValue("@u", username);
-            cmd.Parameters.AddWithValue("@p", password);
-
-            using var reader = cmd.ExecuteReader();
-
-            if (reader.Read())
+            // --- ADMIN LOGIN ---
+            using (var cmd = new SQLiteCommand("SELECT * FROM Admins WHERE Username = @u AND PasswordHash = @p", _conn))
             {
-                // Admin belépés
-                var adminForm = new AdminDashboardForm(_conn); 
-                adminForm.Show();
-                this.Hide();
-                return;
+                cmd.Parameters.AddWithValue("@u", username);
+                cmd.Parameters.AddWithValue("@p", password);
+
+                using var reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    var adminForm = new AdminDashboardForm(_conn);
+                    adminForm.Show();
+                    this.Hide();
+                    return;
+                }
             }
-            cmd.CommandText = "SELECT * FROM Customers WHERE Email = @u AND PasswordHash = @p";
-            //reader.Close();
-            //reader.Dispose();
-            cmd.Parameters.Clear();
-            cmd.Parameters.AddWithValue("@u", username);
-            cmd.Parameters.AddWithValue("@p", password); 
 
-            using var custReader = cmd.ExecuteReader();
+            // --- CUSTOMER LOGIN ---
+            using (var cmd = new SQLiteCommand("SELECT * FROM Customers WHERE Email = @u AND PasswordHash = @p", _conn))
+            {
+                cmd.Parameters.AddWithValue("@u", username);
+                cmd.Parameters.AddWithValue("@p", password);
 
-            //if (custReader.Read())
+                using var reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    int customerId = Convert.ToInt32(reader["CustomerId"]);
+                    var customerForm = new CustomerDashboardForm(_conn, customerId); // customerId-t is át kell adni
+                    customerForm.Show();
+                    this.Hide();
+                    return;
+                }
+            }
+
+            // --- TECHNICIAN LOGIN ---
+            //using (var cmd = new SQLiteCommand("SELECT * FROM Technicians WHERE Email = @u AND PhoneNumber = @p", _conn))
             //{
-            //    int customerId = Convert.ToInt32(custReader["CustomerId"]);
-            //    var customerForm = new CustomerDashboardForm(customerId);
-            //    customerForm.Show();
-            //    this.Hide();
-            //    return;
+            //    cmd.Parameters.AddWithValue("@u", username);
+            //    cmd.Parameters.AddWithValue("@p", password);
+
+            //    using var reader = cmd.ExecuteReader();
+            //    if (reader.Read())
+            //    {
+            //        int technicianId = Convert.ToInt32(reader["TechnicianId"]);
+            //        var techForm = new TechnicianDashboardForm(_conn, technicianId);
+            //        techForm.Show();
+            //        this.Hide();
+            //        return;
+            //    }
             //}
 
-            //// Ugyanez Technician-re
-            //cmd.CommandText = "SELECT * FROM Technicians WHERE Email = @u AND PhoneNumber = @p";
-            //custReader.Close();
-            //cmd.Parameters.Clear();
-            //cmd.Parameters.AddWithValue("@u", username);
-            //cmd.Parameters.AddWithValue("@p", password);
-
-            //using var techReader = cmd.ExecuteReader();
-            //if (techReader.Read())
-            //{
-            //    int technicianId = Convert.ToInt32(techReader["TechnicianId"]);
-            //    var techForm = new TechnicianDashboardForm(technicianId); 
-            //    techForm.Show();
-            //    this.Hide();
-            //    return;
-            //}
-
+            // --- INVALID LOGIN ---
             MessageBox.Show("Hibás adatok, kérlek próbáld újra.");
         }
-
     }
 }

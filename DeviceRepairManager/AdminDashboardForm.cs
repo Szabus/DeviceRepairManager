@@ -209,7 +209,7 @@ namespace DeviceRepairManager
                 IsAvailable = chkIsAvaliable.Checked,
                 Email = txtEmail.Text,
                 PhoneNumber = txtPhone2.Text,
-                HireDate = DateTime.Now, 
+                HireDate = DateTime.Now,
                 IsOnLeave = chkIsOnLeave.Checked,
                 Shift = cmbShift.Text,
                 PasswordHash = txtPassword.Text
@@ -229,7 +229,7 @@ namespace DeviceRepairManager
             txtEmail2.Text = "";
             txtPhone2.Text = "";
             chkIsOnLeave.Checked = false;
-            cmbShift.SelectedIndex = -1; 
+            cmbShift.SelectedIndex = -1;
             txtPassword2.Text = "";
         }
         private void tabPage2_Click(object sender, EventArgs e)
@@ -363,6 +363,16 @@ namespace DeviceRepairManager
         }
 
         private void textBox1_TextChanged_4(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabWorkdOrders_Click(object sender, EventArgs e)
         {
 
         }

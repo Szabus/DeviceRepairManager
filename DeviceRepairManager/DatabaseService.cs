@@ -49,7 +49,6 @@ namespace DeviceRepairManager
                     CustomerId      INTEGER NOT NULL,
                     PurchaseDate    TEXT    NOT NULL,
                     WarrantyStatus  TEXT,
-                    Condition       TEXT,
                     Location        TEXT,
                     Color           TEXT,
                     FOREIGN KEY(CustomerId) REFERENCES Customers(CustomerId)
@@ -141,7 +140,7 @@ namespace DeviceRepairManager
         {
             using var cmd = new SQLiteCommand(connection);
 
-            
+
             cmd.CommandText = @"
         INSERT INTO Admins (Username, PasswordHash, Name, Email)
         SELECT 'admin', 'admin123', 'Rendszergazda', 'admin@example.com'
@@ -149,21 +148,68 @@ namespace DeviceRepairManager
     ";
             cmd.ExecuteNonQuery();
 
-            
-            cmd.CommandText = @"
-        INSERT INTO Customers (Name, ContactInfo, Address, Email, PhoneNumber, RegistrationDate, IsVIP, PreferredContactMethod, LastInteractionDate, PasswordHash)
-        SELECT 'Teszt Ügyfél', '06201234567', 'Teszt utca 1', 'customer@example.com', '06201234567', datetime('now'), 0, 'Email', datetime('now'), 'customer123'
-        WHERE NOT EXISTS (SELECT 1 FROM Customers WHERE Email = 'customer@example.com');
-    ";
-            cmd.ExecuteNonQuery();
+            var customers = new (string Name, string ContactInfo, string Address, string Email, string PhoneNumber, string PasswordHash)[]
+    {
+        ("Kovács Péter", "06201234567", "Fő utca 1", "kovacs.peter@example.com", "06201234567", "peter123"),
+        ("Nagy Anna", "06209876543", "Kossuth tér 2", "nagy.anna@example.com", "06209876543", "anna123"),
+        ("Szabó László", "06203456789", "Ady Endre utca 5", "szabo.laszlo@example.com", "06203456789", "laszlo123"),
+        ("Tóth Éva", "06205678901", "Petőfi utca 10", "toth.eva@example.com", "06205678901", "eva123"),
+        ("Molnár Gábor", "06201239876", "Rákóczi út 8", "molnar.gabor@example.com", "06201239876", "gabor123")
+    };
 
+            foreach (var c in customers)
+            {
+                cmd.CommandText = $@"
+            INSERT INTO Customers (Name, ContactInfo, Address, Email, PhoneNumber, RegistrationDate, IsVIP, PreferredContactMethod, LastInteractionDate, PasswordHash)
+            SELECT @Name, @ContactInfo, @Address, @Email, @PhoneNumber, datetime('now'), 0, 'Email', datetime('now'), @PasswordHash
+            WHERE NOT EXISTS (SELECT 1 FROM Customers WHERE Email = @Email);
+        ";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@Name", c.Name);
+                cmd.Parameters.AddWithValue("@ContactInfo", c.ContactInfo);
+                cmd.Parameters.AddWithValue("@Address", c.Address);
+                cmd.Parameters.AddWithValue("@Email", c.Email);
+                cmd.Parameters.AddWithValue("@PhoneNumber", c.PhoneNumber);
+                cmd.Parameters.AddWithValue("@PasswordHash", c.PasswordHash);
+                cmd.ExecuteNonQuery();
+            }
 
-            cmd.CommandText = @"
-        INSERT INTO Technicians (Name, Expertise, IsAvailable, TotalWorkHours, Email, PhoneNumber, HireDate, IsOnLeave, CompletedRepairs, Shift, PasswordHash)
-        SELECT 'Technikus Béla', 'Laptop javítás', 1, 0.0, 'tech@example.com', '06201112222', datetime('now'), 0, 0, 'Reggel', 'tech123'
-        WHERE NOT EXISTS (SELECT 1 FROM Technicians WHERE Email = 'tech@example.com');
-";
-            cmd.ExecuteNonQuery();
+            // Eszközök (Device) - például 12 darab
+            var devices = new (string Type, string Brand, string Model, string SerialNumber, int CustomerId, string PurchaseDate, string WarrantyStatus, string Location, string Color)[]
+            {
+        ("Laptop", "Dell", "XPS 13", "SN12345601", 1, "2022-01-15", "Érvényes", "Budapest", "Ezüst"),
+        ("Telefon", "Samsung", "Galaxy S21", "SN12345602", 1, "2021-11-03", "Lejárt", "Pécs", "Fekete"),
+        ("Tablet", "Apple", "iPad Air", "SN12345603", 2, "2023-03-01", "Érvényes", "Szeged", "Fehér"),
+        ("Laptop", "HP", "EliteBook", "SN12345604", 2, "2021-07-22", "Lejárt", "Budapest", "Szürke"),
+        ("Telefon", "Apple", "iPhone 13", "SN12345605", 3, "2022-12-10", "Érvényes", "Debrecen", "Fekete"),
+        ("Tablet", "Samsung", "Galaxy Tab S7", "SN12345606", 3, "2023-01-05", "Érvényes", "Debrecen", "Kék"),
+        ("Laptop", "Lenovo", "ThinkPad X1", "SN12345607", 4, "2020-05-18", "Lejárt", "Győr", "Fekete"),
+        ("Telefon", "OnePlus", "9 Pro", "SN12345608", 4, "2022-09-30", "Érvényes", "Győr", "Fehér"),
+        ("Laptop", "Asus", "ZenBook", "SN12345609", 5, "2023-02-20", "Érvényes", "Miskolc", "Kék"),
+        ("Tablet", "Microsoft", "Surface Pro", "SN12345610", 5, "2021-08-14", "Lejárt", "Miskolc", "Ezüst"),
+        ("Telefon", "Google", "Pixel 6", "SN12345611", 1, "2023-04-01", "Érvényes", "Budapest", "Fehér"),
+        ("Laptop", "Acer", "Swift 3", "SN12345612", 3, "2022-06-30", "Érvényes", "Szeged", "Fekete")
+            };
+
+            foreach (var d in devices)
+            {
+                cmd.CommandText = $@"
+            INSERT INTO Devices (Type, Brand, Model, SerialNumber, CustomerId, PurchaseDate, WarrantyStatus, Location, Color)
+            SELECT @Type, @Brand, @Model, @SerialNumber, @CustomerId, @PurchaseDate, @WarrantyStatus, @Location, @Color
+            WHERE NOT EXISTS (SELECT 1 FROM Devices WHERE SerialNumber = @SerialNumber);
+        ";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@Type", d.Type);
+                cmd.Parameters.AddWithValue("@Brand", d.Brand);
+                cmd.Parameters.AddWithValue("@Model", d.Model);
+                cmd.Parameters.AddWithValue("@SerialNumber", d.SerialNumber);
+                cmd.Parameters.AddWithValue("@CustomerId", d.CustomerId);
+                cmd.Parameters.AddWithValue("@PurchaseDate", d.PurchaseDate);
+                cmd.Parameters.AddWithValue("@WarrantyStatus", d.WarrantyStatus);
+                cmd.Parameters.AddWithValue("@Location", d.Location);
+                cmd.Parameters.AddWithValue("@Color", d.Color);
+                cmd.ExecuteNonQuery();
+            }
         }
     }
 }

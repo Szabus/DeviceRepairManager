@@ -45,7 +45,6 @@
             lblUsername.Size = new Size(160, 20);
             lblUsername.TabIndex = 0;
             lblUsername.Text = "Felhasználónév / Email";
-            lblUsername.Click += label1_Click;
             // 
             // textBox1
             // 
@@ -54,7 +53,6 @@
             txtUsername.Name = "textBox1";
             txtUsername.Size = new Size(190, 27);
             txtUsername.TabIndex = 1;
-            txtUsername.TextChanged += textBox1_TextChanged;
             // 
             // label2
             // 
@@ -65,7 +63,6 @@
             lblPassword.Size = new Size(48, 20);
             lblPassword.TabIndex = 2;
             lblPassword.Text = "Jelszó";
-            lblPassword.Click += label2_Click;
             // 
             // textBox2
             // 
@@ -94,7 +91,6 @@
             label3.Size = new Size(148, 28);
             label3.TabIndex = 5;
             label3.Text = "BEJELENTKEZÉS";
-            label3.Click += label3_Click;
             // 
             // LoginForm
             // 

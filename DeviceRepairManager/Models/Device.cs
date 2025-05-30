@@ -8,8 +8,6 @@
     public int CustomerId { get; set; }
     public DateTime PurchaseDate { get; set; }
     public string? WarrantyStatus { get; set; }
-    public string? Condition { get; set; }
-
     public string? Location { get; set; }
     public string? Color { get; set; }
 

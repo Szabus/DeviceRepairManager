@@ -1,28 +1,26 @@
 ﻿using DeviceRepairManager.Models;
-using Microsoft.Data.Sqlite;
+using System;
 using System.Collections.Generic;
+using System.Data.SQLite;
 
 namespace DeviceRepairManager.Repositories
 {
     public class DeviceRepository : IDeviceRepository
     {
-        private readonly string _connectionString;
+        private readonly SQLiteConnection _conn;
 
-        public DeviceRepository(string connectionString)
+        public DeviceRepository(SQLiteConnection conn)
         {
-            _connectionString = connectionString;
+            _conn = conn;
         }
 
         public void AddDevice(Device device)
         {
-            using var connection = new SqliteConnection(_connectionString);
-            connection.Open();
-
-            var command = connection.CreateCommand();
-            command.CommandText =
-                @"INSERT INTO Devices 
-                  (Type, Brand, Model, SerialNumber, CustomerId, PurchaseDate, WarrantyStatus, Location, Color)
-                  VALUES (@Type, @Brand, @Model, @SerialNumber, @CustomerId, @PurchaseDate, @WarrantyStatus, @Location, @Color)";
+            using var command = _conn.CreateCommand();
+            command.CommandText = @"
+                INSERT INTO Devices 
+                (Type, Brand, Model, SerialNumber, CustomerId, PurchaseDate, WarrantyStatus, Location, Color)
+                VALUES (@Type, @Brand, @Model, @SerialNumber, @CustomerId, @PurchaseDate, @WarrantyStatus, @Location, @Color)";
             command.Parameters.AddWithValue("@Type", device.Type ?? "");
             command.Parameters.AddWithValue("@Brand", device.Brand ?? "");
             command.Parameters.AddWithValue("@Model", device.Model ?? "");
@@ -38,12 +36,9 @@ namespace DeviceRepairManager.Repositories
 
         public void UpdateDevice(Device device)
         {
-            using var connection = new SqliteConnection(_connectionString);
-            connection.Open();
-
-            var command = connection.CreateCommand();
-            command.CommandText =
-                @"UPDATE Devices SET
+            using var command = _conn.CreateCommand();
+            command.CommandText = @"
+                UPDATE Devices SET
                     Type = @Type,
                     Brand = @Brand,
                     Model = @Model,
@@ -51,11 +46,9 @@ namespace DeviceRepairManager.Repositories
                     CustomerId = @CustomerId,
                     PurchaseDate = @PurchaseDate,
                     WarrantyStatus = @WarrantyStatus,
-                    Condition = @Condition,
                     Location = @Location,
                     Color = @Color
-                  WHERE DeviceId = @DeviceId";
-
+                WHERE DeviceId = @DeviceId";
             command.Parameters.AddWithValue("@DeviceId", device.DeviceId);
             command.Parameters.AddWithValue("@Type", device.Type ?? "");
             command.Parameters.AddWithValue("@Brand", device.Brand ?? "");
@@ -72,22 +65,17 @@ namespace DeviceRepairManager.Repositories
 
         public void DeleteDevice(int deviceId)
         {
-            using var connection = new SqliteConnection(_connectionString);
-            connection.Open();
-
-            var command = connection.CreateCommand();
-            command.CommandText = @"DELETE FROM Devices WHERE DeviceId = @DeviceId";
-            command.Parameters.AddWithValue("@DeviceId", deviceId);
-
-            command.ExecuteNonQuery();
+            using (var cmd = _conn.CreateCommand())
+            {
+                cmd.CommandText = "DELETE FROM Devices WHERE DeviceId = @DeviceId";
+                cmd.Parameters.AddWithValue("@DeviceId", deviceId);
+                cmd.ExecuteNonQuery();
+            }
         }
 
         public Device? GetDeviceById(int deviceId)
         {
-            using var connection = new SqliteConnection(_connectionString);
-            connection.Open();
-
-            var command = connection.CreateCommand();
+            using var command = _conn.CreateCommand();
             command.CommandText = @"SELECT * FROM Devices WHERE DeviceId = @DeviceId";
             command.Parameters.AddWithValue("@DeviceId", deviceId);
 
@@ -103,10 +91,7 @@ namespace DeviceRepairManager.Repositories
         public List<Device> GetAllDevices()
         {
             var devices = new List<Device>();
-            using var connection = new SqliteConnection(_connectionString);
-            connection.Open();
-
-            var command = connection.CreateCommand();
+            using var command = _conn.CreateCommand();
             command.CommandText = @"SELECT * FROM Devices";
 
             using var reader = command.ExecuteReader();
@@ -121,10 +106,7 @@ namespace DeviceRepairManager.Repositories
         public List<Device> GetDevicesByCustomerId(int customerId)
         {
             var devices = new List<Device>();
-            using var connection = new SqliteConnection(_connectionString);
-            connection.Open();
-
-            var command = connection.CreateCommand();
+            using var command = _conn.CreateCommand();
             command.CommandText = @"SELECT * FROM Devices WHERE CustomerId = @CustomerId";
             command.Parameters.AddWithValue("@CustomerId", customerId);
 
@@ -137,20 +119,20 @@ namespace DeviceRepairManager.Repositories
             return devices;
         }
 
-        private Device ReadDevice(SqliteDataReader reader)
+        private Device ReadDevice(SQLiteDataReader reader)
         {
             return new Device
             {
                 DeviceId = reader.GetInt32(0),
-                Type = reader.GetString(1),
-                Brand = reader.GetString(2),
-                Model = reader.GetString(3),
-                SerialNumber = reader.GetString(4),
+                Type = reader.IsDBNull(1) ? null : reader.GetString(1),
+                Brand = reader.IsDBNull(2) ? null : reader.GetString(2),
+                Model = reader.IsDBNull(3) ? null : reader.GetString(3),
+                SerialNumber = reader.IsDBNull(4) ? null : reader.GetString(4),
                 CustomerId = reader.GetInt32(5),
                 PurchaseDate = reader.GetDateTime(6),
-                WarrantyStatus = reader.GetString(7),
-                Location = reader.GetString(8),
-                Color = reader.GetString(9)
+                WarrantyStatus = reader.IsDBNull(7) ? null : reader.GetString(7),
+                Location = reader.IsDBNull(8) ? null : reader.GetString(8),
+                Color = reader.IsDBNull(9) ? null : reader.GetString(9)
             };
         }
     }
