@@ -174,7 +174,6 @@ namespace DeviceRepairManager
                 cmd.ExecuteNonQuery();
             }
 
-            // Eszközök (Device) - például 12 darab
             var devices = new (string Type, string Brand, string Model, string SerialNumber, int CustomerId, string PurchaseDate, string WarrantyStatus, string Location, string Color)[]
             {
         ("Laptop", "Dell", "XPS 13", "SN12345601", 1, "2022-01-15", "Érvényes", "Budapest", "Ezüst"),

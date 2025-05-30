@@ -9,6 +9,6 @@ namespace DeviceRepairManager.Data
 
         public List<Repair> GetRepairsByCustomer(int customerId);
 
-
+        public string? GetCustomerNameById(int customerId);
     }
 }

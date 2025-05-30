@@ -1,127 +1,85 @@
-﻿using DeviceRepairManager.Models;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.SQLite;
+using DeviceRepairManager.Models;
 
-public class WorkOrderRepository
+namespace DeviceRepairManager.Repositories
 {
-    private readonly SQLiteConnection _conn;
-
-    public WorkOrderRepository(SQLiteConnection conn)
+    public class WorkOrderRepository
     {
-        _conn = conn;
-    }
-    public List<WorkOrder> GetWorkOrdersByCustomer(int customerId)
-    {
-        var workOrders = new List<WorkOrder>();
+        private readonly SQLiteConnection _connection;
 
-        using var cmd = new SQLiteCommand(@"
-        SELECT wo.WorkOrderId, wo.RepairId, wo.CreationDate, wo.CompletionDate, wo.Status,
-               wo.Priority, wo.Notes, wo.HoursWorked, wo.RequiresApproval, wo.CreatedBy
-        FROM WorkOrders wo
-        JOIN Repairs r ON wo.RepairId = r.RepairId
-        WHERE r.CustomerId = @customerId", _conn);
-
-        cmd.Parameters.AddWithValue("@customerId", customerId);
-
-        using var reader = cmd.ExecuteReader();
-
-        while (reader.Read())
+        public WorkOrderRepository(SQLiteConnection connection)
         {
-            workOrders.Add(new WorkOrder
-            {
-                WorkOrderId = Convert.ToInt32(reader["WorkOrderId"]),
-                RepairId = Convert.ToInt32(reader["RepairId"]),
-                CreationDate = DateTime.Parse(reader["CreationDate"].ToString()),
-                CompletionDate = string.IsNullOrEmpty(reader["CompletionDate"].ToString()) ? null : DateTime.Parse(reader["CompletionDate"].ToString()),
-                Status = reader["Status"].ToString(),
-                Priority = reader["Priority"].ToString(),
-                Notes = reader["Notes"].ToString(),
-                HoursWorked = Convert.ToDouble(reader["HoursWorked"]),
-                RequiresApproval = Convert.ToBoolean(reader["RequiresApproval"]),
-                CreatedBy = reader["CreatedBy"].ToString()
-            });
+            _connection = connection;
         }
 
-        return workOrders;
-    }
-    public List<WorkOrder> GetAllWorkOrders()
-    {
-        var list = new List<WorkOrder>();
-        using var cmd = new SQLiteCommand("SELECT * FROM WorkOrders", _conn);
-        using var reader = cmd.ExecuteReader();
-
-        while (reader.Read())
+        public void AddWorkOrder(WorkOrder workOrder)
         {
-            list.Add(new WorkOrder
+            using (var cmd = _connection.CreateCommand())
             {
-                WorkOrderId = Convert.ToInt32(reader["WorkOrderId"]),
-                RepairId = Convert.ToInt32(reader["RepairId"]),
-                CreationDate = DateTime.Parse(reader["CreationDate"].ToString()),
-                CompletionDate = reader["CompletionDate"] == DBNull.Value ? (DateTime?)null : DateTime.Parse(reader["CompletionDate"].ToString()),
-                Status = reader["Status"].ToString(),
-                Priority = reader["Priority"].ToString(),
-                Notes = reader["Notes"].ToString(),
-                HoursWorked = Convert.ToDouble(reader["HoursWorked"]),
-                
-            });
+                cmd.CommandText = @"
+                    INSERT INTO WorkOrders
+                    (RepairId, CreationDate, CompletionDate, Status, Priority, Notes, HoursWorked, RequiresApproval, CreatedBy)
+                    VALUES 
+                    (@RepairId, @CreationDate, @CompletionDate, @Status, @Priority, @Notes, @HoursWorked, @RequiresApproval, @CreatedBy);
+                ";
+
+                cmd.Parameters.AddWithValue("@RepairId", workOrder.RepairId);
+                cmd.Parameters.AddWithValue("@CreationDate", workOrder.CreationDate);
+                cmd.Parameters.AddWithValue("@CompletionDate", (object?)workOrder.CompletionDate ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@Status", workOrder.Status ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@Priority", workOrder.Priority ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@Notes", workOrder.Notes ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@HoursWorked", workOrder.HoursWorked);
+                cmd.Parameters.AddWithValue("@RequiresApproval", workOrder.RequiresApproval ? 1 : 0);
+                cmd.Parameters.AddWithValue("@CreatedBy", workOrder.CreatedBy ?? (object)DBNull.Value);
+
+                cmd.ExecuteNonQuery();
+            }
         }
-        return list;
-    }
 
-    public void AddWorkOrder(WorkOrder order)
-    {
-        using var cmd = new SQLiteCommand(@"
-            INSERT INTO WorkOrders 
-            (RepairId, CreationDate, CompletionDate, Status, Priority, Notes, HoursWorked)
-            VALUES 
-            (@repairId, @creationDate, @completionDate, @status, @priority, @notes, @hoursWorked)", _conn);
+        public List<WorkOrder> GetWorkOrdersByCustomer(int customerId)
+        {
+            var result = new List<WorkOrder>();
 
-        cmd.Parameters.AddWithValue("@repairId", order.RepairId);
-        cmd.Parameters.AddWithValue("@creationDate", order.CreationDate.ToString("yyyy-MM-dd HH:mm:ss"));
-        if (order.CompletionDate.HasValue)
-            cmd.Parameters.AddWithValue("@completionDate", order.CompletionDate.Value.ToString("yyyy-MM-dd HH:mm:ss"));
-        else
-            cmd.Parameters.AddWithValue("@completionDate", DBNull.Value);
-        cmd.Parameters.AddWithValue("@status", order.Status);
-        cmd.Parameters.AddWithValue("@priority", order.Priority);
-        cmd.Parameters.AddWithValue("@notes", order.Notes);
-        cmd.Parameters.AddWithValue("@hoursWorked", order.HoursWorked);
-        
+            using (var cmd = _connection.CreateCommand())
+            {
+                cmd.CommandText = @"
+                    SELECT w.*
+                    FROM WorkOrders w
+                    JOIN Devices d ON w.RepairId = d.DeviceId
+                    WHERE d.CustomerId = @CustomerId;
+                ";
 
-        cmd.ExecuteNonQuery();
-    }
+                cmd.Parameters.AddWithValue("@CustomerId", customerId);
 
-    public void UpdateWorkOrder(WorkOrder order)
-    {
-        using var cmd = new SQLiteCommand(@"
-            UPDATE WorkOrders SET
-            RepairId = @repairId,
-            CreationDate = @creationDate,
-            CompletionDate = @completionDate,
-            Status = @status,
-            Priority = @priority,
-            Notes = @notes,
-            HoursWorked = @hoursWorked,
-            WHERE WorkOrderId = @id", _conn);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var order = new WorkOrder
+                        {
+                            WorkOrderId = reader.GetInt32(reader.GetOrdinal("WorkOrderId")),
+                            RepairId = reader.GetInt32(reader.GetOrdinal("RepairId")),
+                            CreationDate = reader.GetDateTime(reader.GetOrdinal("CreationDate")),
+                            CompletionDate = reader.IsDBNull(reader.GetOrdinal("CompletionDate"))
+                                             ? null
+                                             : reader.GetDateTime(reader.GetOrdinal("CompletionDate")),
+                            Status = reader["Status"]?.ToString(),
+                            Priority = reader["Priority"]?.ToString(),
+                            Notes = reader["Notes"]?.ToString(),
+                            HoursWorked = reader.GetDouble(reader.GetOrdinal("HoursWorked")),
+                            RequiresApproval = reader.GetInt32(reader.GetOrdinal("RequiresApproval")) == 1,
+                            CreatedBy = reader["CreatedBy"]?.ToString()
+                        };
 
-        cmd.Parameters.AddWithValue("@repairId", order.RepairId);
-        cmd.Parameters.AddWithValue("@creationDate", order.CreationDate.ToString("yyyy-MM-dd HH:mm:ss"));
-        if (order.CompletionDate.HasValue)
-            cmd.Parameters.AddWithValue("@completionDate", order.CompletionDate.Value.ToString("yyyy-MM-dd HH:mm:ss"));
-        else
-            cmd.Parameters.AddWithValue("@completionDate", DBNull.Value);
-        cmd.Parameters.AddWithValue("@status", order.Status);
-        cmd.Parameters.AddWithValue("@priority", order.Priority);
-        cmd.Parameters.AddWithValue("@notes", order.Notes);
-        cmd.Parameters.AddWithValue("@hoursWorked", order.HoursWorked);
-        cmd.Parameters.AddWithValue("@id", order.WorkOrderId);
+                        result.Add(order);
+                    }
+                }
+            }
 
-        cmd.ExecuteNonQuery();
-    }
-
-    public void DeleteWorkOrder(int workOrderId)
-    {
-        using var cmd = new SQLiteCommand("DELETE FROM WorkOrders WHERE WorkOrderId = @id", _conn);
-        cmd.Parameters.AddWithValue("@id", workOrderId);
-        cmd.ExecuteNonQuery();
+            return result;
+        }
     }
 }

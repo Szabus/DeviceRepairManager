@@ -51,4 +51,16 @@ public class CustomerRepository
 
         return repairs;
     }
+
+    public string? GetCustomerNameById(int customerId)
+    {
+        string sql = "SELECT Name FROM Customers WHERE CustomerId = @CustomerId";
+
+        using (var cmd = new SQLiteCommand(sql, _conn))
+        {
+            cmd.Parameters.AddWithValue("@CustomerId", customerId);
+            var result = cmd.ExecuteScalar();
+            return result?.ToString();
+        }
+    }
 }

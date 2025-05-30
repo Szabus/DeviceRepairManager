@@ -246,10 +246,10 @@
             btnSave.UseVisualStyleBackColor = true;
             btnSave.Click += btnAddDevice_Click;
             // 
-            // btnCancel
+            // btnDelete
             // 
             btnDelete.Location = new Point(374, 420);
-            btnDelete.Name = "btnCancel";
+            btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(94, 29);
             btnDelete.TabIndex = 21;
             btnDelete.Text = "Törlés";
@@ -300,6 +300,7 @@
             cmbSelectDevice.Name = "cmbSelectDevice";
             cmbSelectDevice.Size = new Size(151, 28);
             cmbSelectDevice.TabIndex = 26;
+            cmbSelectDevice.SelectedIndexChanged += cmbSelectDevice_SelectedIndexChanged;
             // 
             // cmbPriority
             // 
@@ -320,12 +321,13 @@
             // 
             // btnSave2
             // 
-            btnSave2.Location = new Point(261, 589);
+            btnSave2.Location = new Point(261, 599);
             btnSave2.Name = "btnSave2";
             btnSave2.Size = new Size(192, 29);
             btnSave2.TabIndex = 29;
             btnSave2.Text = "Javítási igény leadása";
             btnSave2.UseVisualStyleBackColor = true;
+            btnSave2.Click += btnSubmitWorkOrder_Click;
             // 
             // label16
             // 

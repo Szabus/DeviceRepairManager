@@ -34,7 +34,8 @@ namespace DeviceRepairManager
 
         private void CustomerDashboardForm_Load(object sender, EventArgs e)
         {
-
+            LoadDevicesToComboBox(_customerId);
+            LoadWorkOrdersForCustomer(_customerId);
         }
 
         private void LoadWorkOrdersForCustomer(int customerId)
@@ -184,7 +185,7 @@ namespace DeviceRepairManager
             {
                 try
                 {
-                    _deviceRepo.DeleteDevice(selectedDevice.DeviceId); 
+                    _deviceRepo.DeleteDevice(selectedDevice.DeviceId);
                     LoadDevicesForCustomer(_customerId);
                     ClearDeviceForm();
                     MessageBox.Show("Eszköz törölve!");
@@ -193,6 +194,52 @@ namespace DeviceRepairManager
                 {
                     MessageBox.Show("Hiba történt a törlés során: " + ex.Message);
                 }
+            }
+        }
+
+        private void cmbSelectDevice_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LoadDevicesToComboBox(int customerId)
+        {
+            var devices = _deviceRepo.GetDevicesByCustomerId(customerId);
+            cmbSelectDevice.DataSource = devices;
+            cmbSelectDevice.DisplayMember = "Model"; 
+            cmbSelectDevice.ValueMember = "DeviceId";      
+        }
+
+        private void btnSubmitWorkOrder_Click(object sender, EventArgs e)
+        {
+            
+            try
+            {
+                var newOrder = new WorkOrder
+                {
+                    RepairId = Convert.ToInt32(cmbSelectDevice.SelectedValue),
+                    CreationDate = DateTime.Now,
+                    CreatedBy = _customerRepo.GetCustomerNameById(_customerId), // vagy email
+                    Priority = cmbPriority.SelectedItem?.ToString() ?? "Nincs megadva",
+                    Notes = txtNotes.Text,
+                    Status = "Új",
+                    CompletionDate = null,
+                    HoursWorked = 0,
+                    RequiresApproval = false
+                };
+
+                _workOrderRepo.AddWorkOrder(newOrder);
+
+                MessageBox.Show("Szerviz leadva sikeresen!");
+
+                LoadWorkOrdersForCustomer(_customerId); 
+                cmbPriority.SelectedIndex = -1;
+                txtNotes.Clear();
+                cmbSelectDevice.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hiba történt: " + ex.Message);
             }
         }
     }
