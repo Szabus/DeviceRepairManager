@@ -1,27 +1,24 @@
 ﻿using DeviceRepairManager.Models;
-using System.Data.SQLite;
 using System;
 using System.Collections.Generic;
+using System.Data.SQLite;
 
 namespace DeviceRepairManager.Repositories
 {
-    public class RepairRepository : IRepairRepository
+    public class RepairRepository
     {
-        private readonly string _connectionString;
+        private readonly SQLiteConnection _connection;
 
-        public RepairRepository(string connectionString)
+        public RepairRepository(SQLiteConnection connection)
         {
-            _connectionString = connectionString;
+            _connection = connection;
         }
 
         public List<Repair> GetAllRepairs()
         {
             var repairs = new List<Repair>();
 
-            using var conn = new SQLiteConnection(_connectionString);
-            conn.Open();
-
-            var cmd = new SQLiteCommand("SELECT * FROM Repairs", conn);
+            using var cmd = new SQLiteCommand("SELECT * FROM Repairs", _connection);
             using var reader = cmd.ExecuteReader();
             while (reader.Read())
             {
@@ -32,10 +29,7 @@ namespace DeviceRepairManager.Repositories
 
         public Repair? GetRepairById(int id)
         {
-            using var conn = new SQLiteConnection(_connectionString);
-            conn.Open();
-
-            var cmd = new SQLiteCommand("SELECT * FROM Repairs WHERE RepairId = @id", conn);
+            using var cmd = new SQLiteCommand("SELECT * FROM Repairs WHERE RepairId = @id", _connection);
             cmd.Parameters.AddWithValue("@id", id);
             using var reader = cmd.ExecuteReader();
 
@@ -46,68 +40,47 @@ namespace DeviceRepairManager.Repositories
             return null;
         }
 
-        public void AddRepair(Repair repair)
+        // Ez a metódus kell neked a formhoz: javítások lekérése munkalap alapján
+        public List<Repair> GetRepairsByWorkOrderId(int workOrderId)
         {
-            using var conn = new SQLiteConnection(_connectionString);
-            conn.Open();
+            var repairs = new List<Repair>();
 
-            var cmd = new SQLiteCommand(@"
-                INSERT INTO Repairs
-                (DeviceId, CustomerId, StartDate, Status, Description, CustomerApproved, EndDate, Notes, RepairCount, IsUnderRepair)
-                VALUES
-                (@DeviceId, @CustomerId, @StartDate, @Status, @Description, @CustomerApproved, @EndDate, @Notes, @RepairCount, @IsUnderRepair)", conn);
+            // Feltételezem, hogy a Repair táblában van egy WorkOrderId oszlop (ha nincs, akkor a javításokat másképp kell lekérni)
+            using var cmd = new SQLiteCommand("SELECT * FROM Repairs WHERE WorkOrderId = @workOrderId", _connection);
+            cmd.Parameters.AddWithValue("@workOrderId", workOrderId);
+            using var reader = cmd.ExecuteReader();
 
-            AddParameters(cmd, repair);
-            cmd.ExecuteNonQuery();
+            while (reader.Read())
+            {
+                repairs.Add(ReadRepair(reader));
+            }
+            return repairs;
         }
 
         public void UpdateRepair(Repair repair)
         {
-            using var conn = new SQLiteConnection(_connectionString);
-            conn.Open();
-
-            var cmd = new SQLiteCommand(@"
+            using var cmd = new SQLiteCommand(@"
                 UPDATE Repairs SET
                 DeviceId = @DeviceId,
-                CustomerId = @CustomerId,
+                TechnicianId = @TechnicianId,
                 StartDate = @StartDate,
-                Status = @Status,
-                Description = @Description,
-                CustomerApproved = @CustomerApproved,
                 EndDate = @EndDate,
-                Notes = @Notes,
-                RepairCount = @RepairCount,
-                IsUnderRepair = @IsUnderRepair
-                WHERE RepairId = @RepairId", conn);
+                Status = @Status,
+                Description = @Description
+                WHERE RepairId = @RepairId", _connection);
 
             cmd.Parameters.AddWithValue("@RepairId", repair.RepairId);
-            AddParameters(cmd, repair);
-            cmd.ExecuteNonQuery();
-        }
-
-        public void DeleteRepair(int id)
-        {
-            using var conn = new SQLiteConnection(_connectionString);
-            conn.Open();
-
-            var cmd = new SQLiteCommand("DELETE FROM Repairs WHERE RepairId = @id", conn);
-            cmd.Parameters.AddWithValue("@id", id);
-            cmd.ExecuteNonQuery();
-        }
-
-        private void AddParameters(SQLiteCommand cmd, Repair repair)
-        {
             cmd.Parameters.AddWithValue("@DeviceId", repair.DeviceId);
-            cmd.Parameters.AddWithValue("@CustomerId", repair.CustomerId);
+            cmd.Parameters.AddWithValue("@TechnicianId", repair.TechnicianId);
             cmd.Parameters.AddWithValue("@StartDate", repair.StartDate);
+            cmd.Parameters.AddWithValue("@EndDate", repair.EndDate.HasValue ? (object)repair.EndDate.Value : DBNull.Value);
             cmd.Parameters.AddWithValue("@Status", repair.Status ?? (object)DBNull.Value);
             cmd.Parameters.AddWithValue("@Description", repair.Description ?? (object)DBNull.Value);
-            cmd.Parameters.AddWithValue("@CustomerApproved", repair.CustomerApproved);
-            cmd.Parameters.AddWithValue("@EndDate", repair.EndDate.HasValue ? (object)repair.EndDate.Value : DBNull.Value);
-            cmd.Parameters.AddWithValue("@Notes", repair.Notes ?? (object)DBNull.Value);
-            cmd.Parameters.AddWithValue("@RepairCount", repair.RepairCount);
-            cmd.Parameters.AddWithValue("@IsUnderRepair", repair.IsUnderRepair);
+
+            cmd.ExecuteNonQuery();
         }
+
+        // Egyéb CRUD metódusok is hozzáadhatók, ha szükséges
 
         private Repair ReadRepair(SQLiteDataReader reader)
         {
@@ -115,15 +88,11 @@ namespace DeviceRepairManager.Repositories
             {
                 RepairId = Convert.ToInt32(reader["RepairId"]),
                 DeviceId = Convert.ToInt32(reader["DeviceId"]),
-                CustomerId = Convert.ToInt32(reader["CustomerId"]),
+                TechnicianId = Convert.ToInt32(reader["DeviceId"]),
                 StartDate = Convert.ToDateTime(reader["StartDate"]),
+                EndDate = reader["EndDate"] == DBNull.Value ? null : (DateTime?)Convert.ToDateTime(reader["EndDate"]),
                 Status = reader["Status"]?.ToString(),
                 Description = reader["Description"]?.ToString(),
-                CustomerApproved = Convert.ToBoolean(reader["CustomerApproved"]),
-                EndDate = reader["EndDate"] == DBNull.Value ? null : (DateTime?)Convert.ToDateTime(reader["EndDate"]),
-                Notes = reader["Notes"]?.ToString(),
-                RepairCount = Convert.ToInt32(reader["RepairCount"]),
-                IsUnderRepair = Convert.ToBoolean(reader["IsUnderRepair"])
             };
         }
     }

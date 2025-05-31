@@ -608,6 +608,7 @@
             label1.Size = new Size(152, 31);
             label1.TabIndex = 1;
             label1.Text = "Admin felület";
+            label1.Click += label1_Click;
             // 
             // AdminDashboardForm
             // 

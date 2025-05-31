@@ -60,21 +60,21 @@ namespace DeviceRepairManager
             }
 
             // --- TECHNICIAN LOGIN ---
-            //using (var cmd = new SQLiteCommand("SELECT * FROM Technicians WHERE Email = @u AND PhoneNumber = @p", _conn))
-            //{
-            //    cmd.Parameters.AddWithValue("@u", username);
-            //    cmd.Parameters.AddWithValue("@p", password);
+            using (var cmd = new SQLiteCommand("SELECT * FROM Technicians WHERE Email = @u AND PasswordHash = @p", _conn))
+            {
+                cmd.Parameters.AddWithValue("@u", username);
+                cmd.Parameters.AddWithValue("@p", password);
 
-            //    using var reader = cmd.ExecuteReader();
-            //    if (reader.Read())
-            //    {
-            //        int technicianId = Convert.ToInt32(reader["TechnicianId"]);
-            //        var techForm = new TechnicianDashboardForm(_conn, technicianId);
-            //        techForm.Show();
-            //        this.Hide();
-            //        return;
-            //    }
-            //}
+                using var reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    int technicianId = Convert.ToInt32(reader["TechnicianId"]);
+                    var techForm = new TechnicianDashboardForm(_conn);
+                    techForm.Show();
+                    this.Hide();
+                    return;
+                }
+            }
 
             // --- INVALID LOGIN ---
             MessageBox.Show("Hibás adatok, kérlek próbáld újra.");

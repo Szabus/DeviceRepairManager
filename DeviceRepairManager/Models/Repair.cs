@@ -7,6 +7,7 @@ namespace DeviceRepairManager.Models
         public int RepairId { get; set; }
         public int DeviceId { get; set; }
         public int CustomerId { get; set; }
+        public int TechnicianId { get; set; } 
         public DateTime StartDate { get; set; }
         public string? Status { get; set; }
         public string? Description { get; set; }
