@@ -67,6 +67,7 @@
             dgvWorkOrders.RowHeadersWidth = 51;
             dgvWorkOrders.Size = new Size(204, 188);
             dgvWorkOrders.TabIndex = 1;
+           // dgvWorkOrders.CellContentClick += this.dgvWorkOrders_CellContentClick_1;
             // 
             // dgvRepairs
             // 
@@ -120,7 +121,6 @@
             grpDetails.Size = new Size(302, 327);
             grpDetails.TabIndex = 6;
             grpDetails.TabStop = false;
-            //grpDetails.Enter += this.grpDetails_Enter;
             // 
             // label7
             // 
@@ -191,6 +191,7 @@
             cmbStatus.Name = "cmbStatus";
             cmbStatus.Size = new Size(131, 28);
             cmbStatus.TabIndex = 1;
+           // cmbStatus.SelectedIndexChanged += this.cmbStatus_SelectedIndexChanged;
             // 
             // cmbSelectWorkOrder
             // 

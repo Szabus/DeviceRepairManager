@@ -65,6 +65,12 @@ namespace DeviceRepairManager.Repositories
             return list;
         }
 
+        public void DeleteWorkOrder(int id)
+        {
+            using var cmd = new SQLiteCommand("DELETE FROM WorkOrders WHERE WorkOrderId = @id", _connection);
+            cmd.Parameters.AddWithValue("@id", id);
+            cmd.ExecuteNonQuery();
+        }
         public void UpdateWorkOrder(WorkOrder workOrder)
         {
             using var cmd = new SQLiteCommand(@"

@@ -79,9 +79,27 @@
             label8 = new Label();
             dgvTechnicians = new DataGridView();
             tabWorkdOrders = new TabPage();
-            label1 = new Label();
-            dgvWorkOrders = new DataGridView();
+            btnDeleteWorkOrder = new Button();
+            btnUpdateWorkOrder = new Button();
+            btnAddWorkOrder = new Button();
+            label22 = new Label();
+            txtCreatedBy = new TextBox();
+            chkRequiresApproval = new CheckBox();
+            label21 = new Label();
+            numHoursWorked = new NumericUpDown();
+            label20 = new Label();
+            txtNotes = new TextBox();
+            label19 = new Label();
+            cmbPriority = new ComboBox();
+            label18 = new Label();
+            cmbStatus = new ComboBox();
+            dtpCompletionDate = new DateTimePicker();
+            dtpCreationDate = new DateTimePicker();
+            label17 = new Label();
+            txtRepairId = new TextBox();
             txtWorkOrderId = new TextBox();
+            dgvWorkOrders = new DataGridView();
+            label1 = new Label();
             tabControl1.SuspendLayout();
             tabCustomers.SuspendLayout();
             groupBox1.SuspendLayout();
@@ -91,6 +109,7 @@
             ((System.ComponentModel.ISupportInitialize)numTotalWorkHours).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvTechnicians).BeginInit();
             tabWorkdOrders.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numHoursWorked).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvWorkOrders).BeginInit();
             SuspendLayout();
             // 
@@ -315,7 +334,7 @@
             dgvCustomers.RowHeadersWidth = 51;
             dgvCustomers.Size = new Size(666, 156);
             dgvCustomers.TabIndex = 0;
-            dgvCustomers.CellContentClick += dgvCustomers_SelectionChanged;
+            dgvCustomers.SelectionChanged += dgvCustomers_SelectionChanged;
             // 
             // tabTechnician
             // 
@@ -594,6 +613,24 @@
             // 
             // tabWorkdOrders
             // 
+            tabWorkdOrders.Controls.Add(btnDeleteWorkOrder);
+            tabWorkdOrders.Controls.Add(btnUpdateWorkOrder);
+            tabWorkdOrders.Controls.Add(btnAddWorkOrder);
+            tabWorkdOrders.Controls.Add(label22);
+            tabWorkdOrders.Controls.Add(txtCreatedBy);
+            tabWorkdOrders.Controls.Add(chkRequiresApproval);
+            tabWorkdOrders.Controls.Add(label21);
+            tabWorkdOrders.Controls.Add(numHoursWorked);
+            tabWorkdOrders.Controls.Add(label20);
+            tabWorkdOrders.Controls.Add(txtNotes);
+            tabWorkdOrders.Controls.Add(label19);
+            tabWorkdOrders.Controls.Add(cmbPriority);
+            tabWorkdOrders.Controls.Add(label18);
+            tabWorkdOrders.Controls.Add(cmbStatus);
+            tabWorkdOrders.Controls.Add(dtpCompletionDate);
+            tabWorkdOrders.Controls.Add(dtpCreationDate);
+            tabWorkdOrders.Controls.Add(label17);
+            tabWorkdOrders.Controls.Add(txtRepairId);
             tabWorkdOrders.Controls.Add(txtWorkOrderId);
             tabWorkdOrders.Controls.Add(dgvWorkOrders);
             tabWorkdOrders.Location = new Point(4, 29);
@@ -605,16 +642,171 @@
             tabWorkdOrders.UseVisualStyleBackColor = true;
             tabWorkdOrders.Click += tabWorkdOrders_Click;
             // 
-            // label1
+            // btnDeleteWorkOrder
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(296, 18);
-            label1.Name = "label1";
-            label1.Size = new Size(152, 31);
-            label1.TabIndex = 1;
-            label1.Text = "Admin felület";
-            label1.Click += label1_Click;
+            btnDeleteWorkOrder.Location = new Point(444, 436);
+            btnDeleteWorkOrder.Name = "btnDeleteWorkOrder";
+            btnDeleteWorkOrder.Size = new Size(94, 29);
+            btnDeleteWorkOrder.TabIndex = 20;
+            btnDeleteWorkOrder.Text = "Törlés";
+            btnDeleteWorkOrder.UseVisualStyleBackColor = true;
+            btnDeleteWorkOrder.Click += BtnDeleteWorkOrder_Click;
+            // 
+            // btnUpdateWorkOrder
+            // 
+            btnUpdateWorkOrder.Location = new Point(318, 436);
+            btnUpdateWorkOrder.Name = "btnUpdateWorkOrder";
+            btnUpdateWorkOrder.Size = new Size(94, 29);
+            btnUpdateWorkOrder.TabIndex = 19;
+            btnUpdateWorkOrder.Text = "Módosítás";
+            btnUpdateWorkOrder.UseVisualStyleBackColor = true;
+            btnUpdateWorkOrder.Click += BtnUpdateWorkOrder_Click;
+            // 
+            // btnAddWorkOrder
+            // 
+            btnAddWorkOrder.Location = new Point(190, 436);
+            btnAddWorkOrder.Name = "btnAddWorkOrder";
+            btnAddWorkOrder.Size = new Size(94, 29);
+            btnAddWorkOrder.TabIndex = 18;
+            btnAddWorkOrder.Text = "Hozzáadás";
+            btnAddWorkOrder.UseVisualStyleBackColor = true;
+            btnAddWorkOrder.Click += BtnAddWorkOrder_Click;
+            // 
+            // label22
+            // 
+            label22.AutoSize = true;
+            label22.Location = new Point(306, 330);
+            label22.Name = "label22";
+            label22.Size = new Size(78, 20);
+            label22.TabIndex = 17;
+            label22.Text = "Létrehozó:";
+            // 
+            // txtCreatedBy
+            // 
+            txtCreatedBy.Location = new Point(462, 323);
+            txtCreatedBy.Name = "txtCreatedBy";
+            txtCreatedBy.Size = new Size(165, 27);
+            txtCreatedBy.TabIndex = 16;
+            // 
+            // chkRequiresApproval
+            // 
+            chkRequiresApproval.AutoSize = true;
+            chkRequiresApproval.Location = new Point(462, 284);
+            chkRequiresApproval.Name = "chkRequiresApproval";
+            chkRequiresApproval.Size = new Size(106, 24);
+            chkRequiresApproval.TabIndex = 15;
+            chkRequiresApproval.Text = "Jóváhagyás";
+            chkRequiresApproval.UseVisualStyleBackColor = true;
+            chkRequiresApproval.CheckedChanged += checkBox1_CheckedChanged_3;
+            // 
+            // label21
+            // 
+            label21.AutoSize = true;
+            label21.Location = new Point(306, 252);
+            label21.Name = "label21";
+            label21.Size = new Size(131, 20);
+            label21.TabIndex = 14;
+            label21.Text = "Munkaórák száma:";
+            // 
+            // numHoursWorked
+            // 
+            numHoursWorked.Location = new Point(462, 247);
+            numHoursWorked.Name = "numHoursWorked";
+            numHoursWorked.Size = new Size(39, 27);
+            numHoursWorked.TabIndex = 13;
+            numHoursWorked.ValueChanged += numHoursWorked_ValueChanged;
+            // 
+            // label20
+            // 
+            label20.AutoSize = true;
+            label20.Location = new Point(306, 206);
+            label20.Name = "label20";
+            label20.Size = new Size(106, 20);
+            label20.TabIndex = 12;
+            label20.Text = "Megjegyzések:";
+            // 
+            // txtNotes
+            // 
+            txtNotes.Location = new Point(462, 199);
+            txtNotes.Name = "txtNotes";
+            txtNotes.Size = new Size(165, 27);
+            txtNotes.TabIndex = 11;
+            // 
+            // label19
+            // 
+            label19.AutoSize = true;
+            label19.Location = new Point(10, 378);
+            label19.Name = "label19";
+            label19.Size = new Size(66, 20);
+            label19.TabIndex = 10;
+            label19.Text = "Prioritás:";
+            // 
+            // cmbPriority
+            // 
+            cmbPriority.FormattingEnabled = true;
+            cmbPriority.Items.AddRange(new object[] { "Alacsony", "", "Közepes", "Magas", "", "", "Sürgős" });
+            cmbPriority.Location = new Point(92, 370);
+            cmbPriority.Name = "cmbPriority";
+            cmbPriority.Size = new Size(160, 28);
+            cmbPriority.TabIndex = 9;
+            cmbPriority.SelectedIndexChanged += cmbPriority_SelectedIndexChanged;
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Location = new Point(9, 331);
+            label18.Name = "label18";
+            label18.Size = new Size(59, 20);
+            label18.TabIndex = 8;
+            label18.Text = "Státusz:";
+            // 
+            // cmbStatus
+            // 
+            cmbStatus.FormattingEnabled = true;
+            cmbStatus.Items.AddRange(new object[] { "Új", "Folyamatban", "Kész" });
+            cmbStatus.Location = new Point(92, 323);
+            cmbStatus.Name = "cmbStatus";
+            cmbStatus.Size = new Size(160, 28);
+            cmbStatus.TabIndex = 7;
+            cmbStatus.SelectedIndexChanged += cmbStatus_SelectedIndexChanged;
+            // 
+            // dtpCompletionDate
+            // 
+            dtpCompletionDate.Location = new Point(92, 280);
+            dtpCompletionDate.Name = "dtpCompletionDate";
+            dtpCompletionDate.Size = new Size(160, 27);
+            dtpCompletionDate.TabIndex = 6;
+            // 
+            // dtpCreationDate
+            // 
+            dtpCreationDate.Location = new Point(92, 247);
+            dtpCreationDate.Name = "dtpCreationDate";
+            dtpCreationDate.Size = new Size(160, 27);
+            dtpCreationDate.TabIndex = 5;
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Location = new Point(4, 206);
+            label17.Name = "label17";
+            label17.Size = new Size(72, 20);
+            label17.TabIndex = 4;
+            label17.Text = "Javítás id:";
+            // 
+            // txtRepairId
+            // 
+            txtRepairId.Location = new Point(92, 199);
+            txtRepairId.Name = "txtRepairId";
+            txtRepairId.Size = new Size(160, 27);
+            txtRepairId.TabIndex = 3;
+            // 
+            // txtWorkOrderId
+            // 
+            txtWorkOrderId.Location = new Point(92, 157);
+            txtWorkOrderId.Name = "txtWorkOrderId";
+            txtWorkOrderId.ReadOnly = true;
+            txtWorkOrderId.Size = new Size(49, 27);
+            txtWorkOrderId.TabIndex = 2;
             // 
             // dgvWorkOrders
             // 
@@ -625,14 +817,18 @@
             dgvWorkOrders.RowHeadersWidth = 51;
             dgvWorkOrders.Size = new Size(674, 148);
             dgvWorkOrders.TabIndex = 1;
+            dgvWorkOrders.SelectionChanged += DgvWorkOrders_SelectionChanged;
             // 
-            // txtWorkOrderId
+            // label1
             // 
-            txtWorkOrderId.Location = new Point(9, 157);
-            txtWorkOrderId.Name = "txtWorkOrderId";
-            txtWorkOrderId.ReadOnly = true;
-            txtWorkOrderId.Size = new Size(49, 27);
-            txtWorkOrderId.TabIndex = 2;
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(296, 18);
+            label1.Name = "label1";
+            label1.Size = new Size(152, 31);
+            label1.TabIndex = 1;
+            label1.Text = "Admin felület";
+            label1.Click += label1_Click;
             // 
             // AdminDashboardForm
             // 
@@ -655,6 +851,7 @@
             ((System.ComponentModel.ISupportInitialize)dgvTechnicians).EndInit();
             tabWorkdOrders.ResumeLayout(false);
             tabWorkdOrders.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)numHoursWorked).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvWorkOrders).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -717,5 +914,23 @@
         private TextBox txtTechnicianId;
         private DataGridView dgvWorkOrders;
         private TextBox txtWorkOrderId;
+        private Label label19;
+        private ComboBox cmbPriority;
+        private Label label18;
+        private ComboBox cmbStatus;
+        private DateTimePicker dtpCompletionDate;
+        private DateTimePicker dtpCreationDate;
+        private Label label17;
+        private TextBox txtRepairId;
+        private TextBox txtNotes;
+        private Label label21;
+        private NumericUpDown numHoursWorked;
+        private Label label20;
+        private Label label22;
+        private TextBox txtCreatedBy;
+        private CheckBox chkRequiresApproval;
+        private Button btnDeleteWorkOrder;
+        private Button btnUpdateWorkOrder;
+        private Button btnAddWorkOrder;
     }
 }

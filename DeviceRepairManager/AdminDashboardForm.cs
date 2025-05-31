@@ -1,4 +1,5 @@
 ﻿using DeviceRepairManager.Models;
+using DeviceRepairManager.Repositories;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,18 +17,54 @@ namespace DeviceRepairManager
     public partial class AdminDashboardForm : Form
     {
         private AdminRepository _adminRepo;
+        private WorkOrderRepository _workOrderRepo;
         public AdminDashboardForm(SQLiteConnection conn)
         {
             InitializeComponent();
             _adminRepo = new AdminRepository(conn);
+            _workOrderRepo = new WorkOrderRepository(conn);
             LoadCustomers();
             LoadTechnicians();
+            LoadWorkOrders();
         }
 
         private void LoadCustomers()
         {
             var customers = _adminRepo.GetAllCustomers();
             dgvCustomers.DataSource = customers;
+        }
+
+        private void LoadWorkOrders()
+        {
+            var list = _workOrderRepo.GetAllWorkOrders();
+            dgvWorkOrders.DataSource = null;
+            dgvWorkOrders.DataSource = list;
+
+            dgvWorkOrders.Columns["WorkOrderId"].ReadOnly = true;
+        }
+
+        private void DgvWorkOrders_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvWorkOrders.CurrentRow == null) return;
+
+            var workOrder = dgvWorkOrders.CurrentRow.DataBoundItem as WorkOrder;
+            if (workOrder == null) return;
+
+            txtWorkOrderId.Text = workOrder.WorkOrderId.ToString();
+            dtpCreationDate.Value = workOrder.CreationDate;
+
+            
+            if (workOrder.CompletionDate.HasValue)
+                dtpCompletionDate.Value = workOrder.CompletionDate.Value;
+            else
+                dtpCompletionDate.Checked = false; 
+
+            cmbStatus.SelectedItem = workOrder.Status ?? "";
+            cmbPriority.SelectedItem = workOrder.Priority ?? "";
+            txtNotes.Text = workOrder.Notes ?? "";
+            numHoursWorked.Text = workOrder.HoursWorked.ToString();
+            chkRequiresApproval.Checked = workOrder.RequiresApproval;
+            txtCreatedBy.Text = workOrder.CreatedBy ?? "";
         }
 
         private void dgvCustomers_SelectionChanged(object sender, EventArgs e)
@@ -46,6 +83,106 @@ namespace DeviceRepairManager
             dtpRegistrationDate.Value = customer.RegistrationDate;
             chkIsVIP.Checked = customer.IsVIP;
             txtPassword.Text = customer.PasswordHash;
+        }
+
+        private void BtnAddWorkOrder_Click(object sender, EventArgs e)
+        {
+            var workOrder = new WorkOrder
+            {
+                CreationDate = dtpCreationDate.Value,
+                CompletionDate = dtpCompletionDate.Checked ? dtpCompletionDate.Value : (DateTime?)null,
+                Status = cmbStatus.SelectedItem?.ToString(),
+                Priority = cmbPriority.SelectedItem?.ToString(),
+                Notes = txtNotes.Text,
+                HoursWorked = double.TryParse(numHoursWorked.Text, out double hours) ? hours : 0,
+                RequiresApproval = chkRequiresApproval.Checked,
+                CreatedBy = txtCreatedBy.Text
+            };
+
+            try
+            {
+                _workOrderRepo.AddWorkOrder(workOrder);
+                MessageBox.Show("Work order hozzáadva.");
+                LoadWorkOrders();
+                ClearWorkOrderForm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hiba a hozzáadás során: " + ex.Message);
+            }
+        }
+
+        private void BtnUpdateWorkOrder_Click(object sender, EventArgs e)
+        {
+            if (!int.TryParse(txtWorkOrderId.Text, out int id))
+            {
+                MessageBox.Show("Érvénytelen WorkOrder ID.");
+                return;
+            }
+
+            var workOrder = new WorkOrder
+            {
+                WorkOrderId = id,
+                CreationDate = dtpCreationDate.Value,
+                CompletionDate = dtpCompletionDate.Checked ? dtpCompletionDate.Value : (DateTime?)null,
+                Status = cmbStatus.SelectedItem?.ToString(),
+                Priority = cmbPriority.SelectedItem?.ToString(),
+                Notes = txtNotes.Text,
+                HoursWorked = double.TryParse(numHoursWorked.Text, out double hours) ? hours : 0,
+                RequiresApproval = chkRequiresApproval.Checked,
+                CreatedBy = txtCreatedBy.Text
+            };
+
+            try
+            {
+                _workOrderRepo.UpdateWorkOrder(workOrder);
+                MessageBox.Show("Work order frissítve.");
+                LoadWorkOrders();
+                ClearWorkOrderForm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hiba a frissítés során: " + ex.Message);
+            }
+        }
+
+        private void BtnDeleteWorkOrder_Click(object sender, EventArgs e)
+        {
+            if (!int.TryParse(txtWorkOrderId.Text, out int id))
+            {
+                MessageBox.Show("Érvénytelen WorkOrder ID.");
+                return;
+            }
+
+            var confirm = MessageBox.Show("Biztosan törölni akarod a work ordert?", "Megerősítés", MessageBoxButtons.YesNo);
+            if (confirm == DialogResult.Yes)
+            {
+                try
+                {
+                    _workOrderRepo.DeleteWorkOrder(id);
+                    MessageBox.Show("Work order törölve.");
+                    LoadWorkOrders();
+                    ClearWorkOrderForm();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Hiba a törlés során: " + ex.Message);
+                }
+            }
+        }
+
+        private void ClearWorkOrderForm()
+        {
+            txtWorkOrderId.Text = "";
+            dtpCreationDate.Value = DateTime.Now;
+            dtpCompletionDate.Value = DateTime.Now;
+            dtpCompletionDate.Checked = false;
+            cmbStatus.SelectedIndex = -1;
+            cmbPriority.SelectedIndex = -1;
+            txtNotes.Text = "";
+            numHoursWorked.Text = "";
+            chkRequiresApproval.Checked = false;
+            txtCreatedBy.Text = "";
         }
 
         private void btnAddCustomer_Click(object sender, EventArgs e)
@@ -383,6 +520,36 @@ namespace DeviceRepairManager
         }
 
         private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void cmbStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbPriority_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvWorkOrders_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void numHoursWorked_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox1_CheckedChanged_3(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAddWorkOrder_Click_1(object sender, EventArgs e)
         {
 
         }
