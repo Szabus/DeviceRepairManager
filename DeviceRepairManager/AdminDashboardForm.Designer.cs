@@ -80,6 +80,8 @@
             dgvTechnicians = new DataGridView();
             tabWorkdOrders = new TabPage();
             label1 = new Label();
+            dgvWorkOrders = new DataGridView();
+            txtWorkOrderId = new TextBox();
             tabControl1.SuspendLayout();
             tabCustomers.SuspendLayout();
             groupBox1.SuspendLayout();
@@ -88,6 +90,8 @@
             ((System.ComponentModel.ISupportInitialize)numCompletedRepairs).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numTotalWorkHours).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvTechnicians).BeginInit();
+            tabWorkdOrders.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvWorkOrders).BeginInit();
             SuspendLayout();
             // 
             // tabControl1
@@ -590,6 +594,8 @@
             // 
             // tabWorkdOrders
             // 
+            tabWorkdOrders.Controls.Add(txtWorkOrderId);
+            tabWorkdOrders.Controls.Add(dgvWorkOrders);
             tabWorkdOrders.Location = new Point(4, 29);
             tabWorkdOrders.Name = "tabWorkdOrders";
             tabWorkdOrders.Padding = new Padding(3);
@@ -610,6 +616,24 @@
             label1.Text = "Admin felület";
             label1.Click += label1_Click;
             // 
+            // dgvWorkOrders
+            // 
+            dgvWorkOrders.AccessibleName = "dgvTechnicians";
+            dgvWorkOrders.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvWorkOrders.Location = new Point(3, 3);
+            dgvWorkOrders.Name = "dgvWorkOrders";
+            dgvWorkOrders.RowHeadersWidth = 51;
+            dgvWorkOrders.Size = new Size(674, 148);
+            dgvWorkOrders.TabIndex = 1;
+            // 
+            // txtWorkOrderId
+            // 
+            txtWorkOrderId.Location = new Point(9, 157);
+            txtWorkOrderId.Name = "txtWorkOrderId";
+            txtWorkOrderId.ReadOnly = true;
+            txtWorkOrderId.Size = new Size(49, 27);
+            txtWorkOrderId.TabIndex = 2;
+            // 
             // AdminDashboardForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -629,6 +653,9 @@
             ((System.ComponentModel.ISupportInitialize)numCompletedRepairs).EndInit();
             ((System.ComponentModel.ISupportInitialize)numTotalWorkHours).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvTechnicians).EndInit();
+            tabWorkdOrders.ResumeLayout(false);
+            tabWorkdOrders.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvWorkOrders).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -688,5 +715,7 @@
         private Button btnUpdateTech;
         private Button btnAddTech;
         private TextBox txtTechnicianId;
+        private DataGridView dgvWorkOrders;
+        private TextBox txtWorkOrderId;
     }
 }

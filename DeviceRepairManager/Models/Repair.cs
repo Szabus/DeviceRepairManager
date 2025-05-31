@@ -16,6 +16,7 @@ namespace DeviceRepairManager.Models
         public string? Notes { get; set; }
         public int RepairCount { get; set; }
         public bool IsUnderRepair { get; set; }
+        public int WorkOrderId { get; set; }
 
         private decimal _loggedHours = 0;
 

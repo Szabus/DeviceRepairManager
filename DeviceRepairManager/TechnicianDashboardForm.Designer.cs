@@ -35,15 +35,15 @@
             label3 = new Label();
             label4 = new Label();
             grpDetails = new GroupBox();
-            cmbSelectWorkOrder = new ComboBox();
-            cmbStatus = new ComboBox();
-            dtpCompletionDate = new DateTimePicker();
-            txtNotes = new TextBox();
-            label5 = new Label();
-            btnUpdateStatus = new Button();
-            btnAddNote = new Button();
-            label6 = new Label();
             label7 = new Label();
+            label6 = new Label();
+            btnAddNote = new Button();
+            btnUpdateStatus = new Button();
+            label5 = new Label();
+            txtNotes = new TextBox();
+            dtpCompletionDate = new DateTimePicker();
+            cmbStatus = new ComboBox();
+            cmbSelectWorkOrder = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)dgvWorkOrders).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvRepairs).BeginInit();
             grpDetails.SuspendLayout();
@@ -58,7 +58,6 @@
             label1.Size = new Size(189, 31);
             label1.TabIndex = 0;
             label1.Text = "Technikusi felület";
-            //label1.Click += label1_Click;
             // 
             // dgvWorkOrders
             // 
@@ -121,48 +120,35 @@
             grpDetails.Size = new Size(302, 327);
             grpDetails.TabIndex = 6;
             grpDetails.TabStop = false;
-            //grpDetails.Enter += groupBox1_Enter;
+            //grpDetails.Enter += this.grpDetails_Enter;
             // 
-            // cmbSelectWorkOrder
+            // label7
             // 
-            cmbSelectWorkOrder.FormattingEnabled = true;
-            cmbSelectWorkOrder.Location = new Point(118, 36);
-            cmbSelectWorkOrder.Name = "cmbSelectWorkOrder";
-            cmbSelectWorkOrder.Size = new Size(131, 28);
-            cmbSelectWorkOrder.TabIndex = 0;
-            //cmbSelectWorkOrder.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            label7.AutoSize = true;
+            label7.Location = new Point(19, 84);
+            label7.Name = "label7";
+            label7.Size = new Size(59, 20);
+            label7.TabIndex = 8;
+            label7.Text = "Státusz:";
             // 
-            // cmbStatus
+            // label6
             // 
-            cmbStatus.FormattingEnabled = true;
-            cmbStatus.Items.AddRange(new object[] { "Új", "Folyamatban", "Kész" });
-            cmbStatus.Location = new Point(118, 76);
-            cmbStatus.Name = "cmbStatus";
-            cmbStatus.Size = new Size(131, 28);
-            cmbStatus.TabIndex = 1;
+            label6.AutoSize = true;
+            label6.Location = new Point(19, 44);
+            label6.Name = "label6";
+            label6.Size = new Size(77, 20);
+            label6.TabIndex = 7;
+            label6.Text = "Munkalap:";
             // 
-            // dtpCompletionDate
+            // btnAddNote
             // 
-            dtpCompletionDate.Location = new Point(19, 115);
-            dtpCompletionDate.Name = "dtpCompletionDate";
-            dtpCompletionDate.Size = new Size(176, 27);
-            dtpCompletionDate.TabIndex = 2;
-            // 
-            // txtNotes
-            // 
-            txtNotes.Location = new Point(131, 161);
-            txtNotes.Name = "txtNotes";
-            txtNotes.Size = new Size(165, 27);
-            txtNotes.TabIndex = 3;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(19, 164);
-            label5.Name = "label5";
-            label5.Size = new Size(106, 20);
-            label5.TabIndex = 4;
-            label5.Text = "Megjegyzések:";
+            btnAddNote.Location = new Point(169, 234);
+            btnAddNote.Name = "btnAddNote";
+            btnAddNote.Size = new Size(112, 50);
+            btnAddNote.TabIndex = 6;
+            btnAddNote.Text = "Megjegyzés mentése";
+            btnAddNote.UseVisualStyleBackColor = true;
+            btnAddNote.Click += btnAddNote_Click;
             // 
             // btnUpdateStatus
             // 
@@ -174,34 +160,47 @@
             btnUpdateStatus.UseVisualStyleBackColor = true;
             btnUpdateStatus.Click += btnUpdateStatus_Click;
             // 
-            // btnAddNote
+            // label5
             // 
-            btnAddNote.Location = new Point(169, 234);
-            btnAddNote.Name = "btnAddNote";
-            btnAddNote.Size = new Size(112, 50);
-            btnAddNote.TabIndex = 6;
-            btnAddNote.Text = "Megjegyzés mentése";
-            btnAddNote.UseVisualStyleBackColor = true;
+            label5.AutoSize = true;
+            label5.Location = new Point(19, 164);
+            label5.Name = "label5";
+            label5.Size = new Size(106, 20);
+            label5.TabIndex = 4;
+            label5.Text = "Megjegyzések:";
             // 
-            // label6
+            // txtNotes
             // 
-            label6.AutoSize = true;
-            label6.Location = new Point(19, 44);
-            label6.Name = "label6";
-            label6.Size = new Size(85, 20);
-            label6.TabIndex = 7;
-            label6.Text = "Munakalap:";
+            txtNotes.Location = new Point(131, 161);
+            txtNotes.Name = "txtNotes";
+            txtNotes.Size = new Size(165, 27);
+            txtNotes.TabIndex = 3;
             // 
-            // label7
+            // dtpCompletionDate
             // 
-            label7.AutoSize = true;
-            label7.Location = new Point(19, 84);
-            label7.Name = "label7";
-            label7.Size = new Size(59, 20);
-            label7.TabIndex = 8;
-            label7.Text = "Státusz:";
+            dtpCompletionDate.Location = new Point(19, 115);
+            dtpCompletionDate.Name = "dtpCompletionDate";
+            dtpCompletionDate.Size = new Size(176, 27);
+            dtpCompletionDate.TabIndex = 2;
             // 
-            // TecnicianDashboardForm
+            // cmbStatus
+            // 
+            cmbStatus.FormattingEnabled = true;
+            cmbStatus.Items.AddRange(new object[] { "Új", "Folyamatban", "Kész" });
+            cmbStatus.Location = new Point(118, 76);
+            cmbStatus.Name = "cmbStatus";
+            cmbStatus.Size = new Size(131, 28);
+            cmbStatus.TabIndex = 1;
+            // 
+            // cmbSelectWorkOrder
+            // 
+            cmbSelectWorkOrder.FormattingEnabled = true;
+            cmbSelectWorkOrder.Location = new Point(118, 36);
+            cmbSelectWorkOrder.Name = "cmbSelectWorkOrder";
+            cmbSelectWorkOrder.Size = new Size(131, 28);
+            cmbSelectWorkOrder.TabIndex = 0;
+            // 
+            // TechnicianDashboardForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -213,9 +212,9 @@
             Controls.Add(dgvRepairs);
             Controls.Add(dgvWorkOrders);
             Controls.Add(label1);
-            Name = "TecnicianDashboardForm";
-            Text = "TecnicianDashboardForm";
-            Load += TecnicianDashboardForm_Load;
+            Name = "TechnicianDashboardForm";
+            Text = "TechnicianDashboardForm";
+            Load += TechnicianDashboardForm_Load;
             ((System.ComponentModel.ISupportInitialize)dgvWorkOrders).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvRepairs).EndInit();
             grpDetails.ResumeLayout(false);

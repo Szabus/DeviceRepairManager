@@ -20,12 +20,12 @@ namespace DeviceRepairManager.Repositories
             {
                 cmd.CommandText = @"
                     INSERT INTO WorkOrders
-                    (RepairId, CreationDate, CompletionDate, Status, Priority, Notes, HoursWorked, RequiresApproval, CreatedBy)
+                    (CreationDate, CompletionDate, Status, Priority, Notes, HoursWorked, RequiresApproval, CreatedBy)
                     VALUES 
-                    (@RepairId, @CreationDate, @CompletionDate, @Status, @Priority, @Notes, @HoursWorked, @RequiresApproval, @CreatedBy);
+                    (@CreationDate, @CompletionDate, @Status, @Priority, @Notes, @HoursWorked, @RequiresApproval, @CreatedBy);
                 ";
 
-                cmd.Parameters.AddWithValue("@RepairId", workOrder.RepairId);
+               // cmd.Parameters.AddWithValue("@RepairId", workOrder.RepairId);
                 cmd.Parameters.AddWithValue("@CreationDate", workOrder.CreationDate);
                 cmd.Parameters.AddWithValue("@CompletionDate", (object?)workOrder.CompletionDate ?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@Status", workOrder.Status ?? (object)DBNull.Value);
@@ -69,7 +69,6 @@ namespace DeviceRepairManager.Repositories
         {
             using var cmd = new SQLiteCommand(@"
                 UPDATE WorkOrders SET
-                    RepairId = @RepairId,
                     CreationDate = @CreationDate,
                     CompletionDate = @CompletionDate,
                     Status = @Status,
@@ -81,7 +80,7 @@ namespace DeviceRepairManager.Repositories
                 WHERE WorkOrderId = @WorkOrderId", _connection);
 
             cmd.Parameters.AddWithValue("@WorkOrderId", workOrder.WorkOrderId);
-            cmd.Parameters.AddWithValue("@RepairId", workOrder.RepairId);
+           // cmd.Parameters.AddWithValue("@RepairId", workOrder.RepairId);
             cmd.Parameters.AddWithValue("@CreationDate", workOrder.CreationDate);
             cmd.Parameters.AddWithValue("@CompletionDate", workOrder.CompletionDate.HasValue ? (object)workOrder.CompletionDate.Value : DBNull.Value);
             cmd.Parameters.AddWithValue("@Status", workOrder.Status ?? (object)DBNull.Value);
@@ -99,7 +98,6 @@ namespace DeviceRepairManager.Repositories
             return new WorkOrder
             {
                 WorkOrderId = Convert.ToInt32(reader["WorkOrderId"]),
-                RepairId = Convert.ToInt32(reader["RepairId"]),
                 CreationDate = Convert.ToDateTime(reader["CreationDate"]),
                 CompletionDate = reader["CompletionDate"] == DBNull.Value ? null : (DateTime?)Convert.ToDateTime(reader["CompletionDate"]),
                 Status = reader["Status"]?.ToString(),
@@ -133,7 +131,6 @@ namespace DeviceRepairManager.Repositories
                         var order = new WorkOrder
                         {
                             WorkOrderId = reader.GetInt32(reader.GetOrdinal("WorkOrderId")),
-                            RepairId = reader.GetInt32(reader.GetOrdinal("RepairId")),
                             CreationDate = reader.GetDateTime(reader.GetOrdinal("CreationDate")),
                             CompletionDate = reader.IsDBNull(reader.GetOrdinal("CompletionDate"))
                                              ? null

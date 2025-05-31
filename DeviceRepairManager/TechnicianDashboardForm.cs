@@ -20,34 +20,42 @@ namespace DeviceRepairManager
             _conn = conn;
             _workOrderRepo = new WorkOrderRepository(conn);
             _repairRepo = new RepairRepository(conn);
+
+            this.Load += TechnicianDashboardForm_Load;
+            cmbSelectWorkOrder.SelectedIndexChanged += cmbSelectWorkOrder_SelectedIndexChanged;
         }
 
-        private void TecnicianDashboardForm_Load(object sender, EventArgs e)
+        private void TechnicianDashboardForm_Load(object sender, EventArgs e)
         {
             LoadWorkOrders();
+            LoadStatusOptions();
         }
 
         private void LoadWorkOrders()
         {
-            // Itt betöltjük az összes munkalapot (vagy akár csak a technikus munkalapjait)
-            var workOrders = _workOrderRepo.GetAllWorkOrders(); // ezt implementálni kell repo-ban
+            var workOrders = _workOrderRepo.GetAllWorkOrders();
             dgvWorkOrders.DataSource = workOrders;
 
-            // Kitöltjük a combo box-ot is a munkalapokkal (pl. work_order_id és esetleg egy rövid leírás)
+            cmbSelectWorkOrder.DataSource = null;
             cmbSelectWorkOrder.DataSource = workOrders;
-            cmbSelectWorkOrder.DisplayMember = "WorkOrderId"; // vagy pl "WorkOrderId és Status" egy property lehet a modelben
+            cmbSelectWorkOrder.DisplayMember = "WorkOrderId";
             cmbSelectWorkOrder.ValueMember = "WorkOrderId";
+        }
+
+        private void LoadStatusOptions()
+        {
+            cmbStatus.Items.Clear();
+            cmbStatus.Items.AddRange(new[] { "Új", "Folyamatban", "Készen", "Árajánlat", "Elutasítva" });
+            cmbStatus.SelectedIndex = 0;
         }
 
         private void cmbSelectWorkOrder_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbSelectWorkOrder.SelectedValue == null)
+            if (cmbSelectWorkOrder.SelectedValue == null || !(cmbSelectWorkOrder.SelectedValue is int))
                 return;
 
             int selectedWorkOrderId = (int)cmbSelectWorkOrder.SelectedValue;
             LoadRepairsForWorkOrder(selectedWorkOrderId);
-
-            // Betöltjük a részleteket a kiválasztott munkalapról
             LoadWorkOrderDetails(selectedWorkOrderId);
         }
 
@@ -70,18 +78,18 @@ namespace DeviceRepairManager
 
         private void btnUpdateStatus_Click(object sender, EventArgs e)
         {
-            if (cmbSelectWorkOrder.SelectedValue == null)
+            if (cmbSelectWorkOrder.SelectedValue == null || !(cmbSelectWorkOrder.SelectedValue is int))
             {
-                MessageBox.Show("Válassz ki egy munkalapot!");
+                MessageBox.Show("Válassz ki egy munkalapot!", "Figyelmeztetés", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             int workOrderId = (int)cmbSelectWorkOrder.SelectedValue;
-
             var workOrder = _workOrderRepo.GetWorkOrderById(workOrderId);
+
             if (workOrder == null)
             {
-                MessageBox.Show("Nem található a munkalap!");
+                MessageBox.Show("Nem található a kiválasztott munkalap!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -91,37 +99,36 @@ namespace DeviceRepairManager
             try
             {
                 _workOrderRepo.UpdateWorkOrder(workOrder);
-                MessageBox.Show("Státusz frissítve!");
-                LoadWorkOrders(); // frissítjük az adatokat
+                MessageBox.Show("Státusz frissítve!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadWorkOrders();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Hiba történt a frissítés során: " + ex.Message);
+                MessageBox.Show("Hiba történt a frissítés során: " + ex.Message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void btnAddNote_Click(object sender, EventArgs e)
         {
-            if (cmbSelectWorkOrder.SelectedValue == null)
+            if (cmbSelectWorkOrder.SelectedValue == null || !(cmbSelectWorkOrder.SelectedValue is int))
             {
-                MessageBox.Show("Válassz ki egy munkalapot!");
+                MessageBox.Show("Válassz ki egy munkalapot!", "Figyelmeztetés", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             int workOrderId = (int)cmbSelectWorkOrder.SelectedValue;
-
             var workOrder = _workOrderRepo.GetWorkOrderById(workOrderId);
+
             if (workOrder == null)
             {
-                MessageBox.Show("Nem található a munkalap!");
+                MessageBox.Show("Nem található a munkalap!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            // Ha már vannak megjegyzések, hozzáfűzzük az újat
             string newNote = txtNotes.Text.Trim();
             if (string.IsNullOrEmpty(newNote))
             {
-                MessageBox.Show("Írj be egy megjegyzést!");
+                MessageBox.Show("Írj be egy megjegyzést!", "Figyelmeztetés", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -132,12 +139,12 @@ namespace DeviceRepairManager
             try
             {
                 _workOrderRepo.UpdateWorkOrder(workOrder);
-                MessageBox.Show("Megjegyzés mentve!");
+                MessageBox.Show("Megjegyzés mentve!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadWorkOrders();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Hiba történt a megjegyzés mentésekor: " + ex.Message);
+                MessageBox.Show("Hiba történt a megjegyzés mentésekor: " + ex.Message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

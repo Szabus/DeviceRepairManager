@@ -217,9 +217,9 @@ namespace DeviceRepairManager
             {
                 var newOrder = new WorkOrder
                 {
-                    RepairId = Convert.ToInt32(cmbSelectDevice.SelectedValue),
+                    //RepairId = Convert.ToInt32(cmbSelectDevice.SelectedValue),
                     CreationDate = DateTime.Now,
-                    CreatedBy = _customerRepo.GetCustomerNameById(_customerId), // vagy email
+                    CreatedBy = _customerRepo.GetCustomerNameById(_customerId), 
                     Priority = cmbPriority.SelectedItem?.ToString() ?? "Nincs megadva",
                     Notes = txtNotes.Text,
                     Status = "Új",

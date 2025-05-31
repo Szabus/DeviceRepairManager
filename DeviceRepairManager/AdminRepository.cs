@@ -246,7 +246,7 @@ public class AdminRepository
             orders.Add(new WorkOrder
             {
                 WorkOrderId = Convert.ToInt32(reader["WorkOrderId"]),
-                RepairId = Convert.ToInt32(reader["RepairId"]),
+                //RepairId = Convert.ToInt32(reader["RepairId"]),
                 CreationDate = DateTime.Parse(reader["CreationDate"].ToString()),
                 CompletionDate = string.IsNullOrEmpty(reader["CompletionDate"].ToString())
                                  ? (DateTime?)null
@@ -271,7 +271,7 @@ public class AdminRepository
             return new WorkOrder
             {
                 WorkOrderId = Convert.ToInt32(reader["WorkOrderId"]),
-                RepairId = Convert.ToInt32(reader["RepairId"]),
+                //RepairId = Convert.ToInt32(reader["RepairId"]),
                 CreationDate = DateTime.Parse(reader["CreationDate"].ToString()),
                 CompletionDate = string.IsNullOrEmpty(reader["CompletionDate"].ToString())
                                  ? (DateTime?)null
@@ -288,10 +288,10 @@ public class AdminRepository
     public void AddWorkOrder(WorkOrder workOrder)
     {
         using var cmd = new SQLiteCommand(@"
-            INSERT INTO WorkOrders (RepairId, CreationDate, CompletionDate, Status, Priority, Notes, HoursWorked, RequiresApproval, CreatedBy)
-            VALUES (@repairId, @creationDate, @completionDate, @status, @priority, @notes, @hoursWorked, @requiresApproval, @createdBy)", _conn);
+            INSERT INTO WorkOrders ( CreationDate, CompletionDate, Status, Priority, Notes, HoursWorked, RequiresApproval, CreatedBy)
+            VALUES ( @creationDate, @completionDate, @status, @priority, @notes, @hoursWorked, @requiresApproval, @createdBy)", _conn);
 
-        cmd.Parameters.AddWithValue("@repairId", workOrder.RepairId);
+        //cmd.Parameters.AddWithValue("@repairId", workOrder.RepairId);
         cmd.Parameters.AddWithValue("@creationDate", workOrder.CreationDate.ToString("yyyy-MM-dd HH:mm:ss"));
         cmd.Parameters.AddWithValue("@completionDate", workOrder.CompletionDate?.ToString("yyyy-MM-dd HH:mm:ss") ?? (object)DBNull.Value);
         cmd.Parameters.AddWithValue("@status", workOrder.Status);
@@ -306,7 +306,7 @@ public class AdminRepository
     {
         using var cmd = new SQLiteCommand(@"
             UPDATE WorkOrders SET
-                RepairId = @repairId,
+                
                 CreationDate = @creationDate,
                 CompletionDate = @completionDate,
                 Status = @status,
@@ -317,7 +317,7 @@ public class AdminRepository
                 CreatedBy = @createdBy
             WHERE WorkOrderId = @id", _conn);
 
-        cmd.Parameters.AddWithValue("@repairId", workOrder.RepairId);
+        //cmd.Parameters.AddWithValue("@repairId", workOrder.RepairId);
         cmd.Parameters.AddWithValue("@creationDate", workOrder.CreationDate.ToString("yyyy-MM-dd HH:mm:ss"));
         cmd.Parameters.AddWithValue("@completionDate", workOrder.CompletionDate?.ToString("yyyy-MM-dd HH:mm:ss") ?? (object)DBNull.Value);
         cmd.Parameters.AddWithValue("@status", workOrder.Status);
