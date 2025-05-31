@@ -147,5 +147,12 @@ namespace DeviceRepairManager
                 MessageBox.Show("Hiba történt a megjegyzés mentésekor: " + ex.Message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            LoginForm loginForm = new LoginForm(_conn);
+            loginForm.Show();
+        }
     }
+
 }

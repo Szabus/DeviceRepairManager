@@ -18,6 +18,7 @@ namespace DeviceRepairManager
     {
         private AdminRepository _adminRepo;
         private WorkOrderRepository _workOrderRepo;
+        private SQLiteConnection _conn;
         public AdminDashboardForm(SQLiteConnection conn)
         {
             InitializeComponent();
@@ -26,6 +27,7 @@ namespace DeviceRepairManager
             LoadCustomers();
             LoadTechnicians();
             LoadWorkOrders();
+            _conn = conn;
         }
 
         private void LoadCustomers()
@@ -53,11 +55,11 @@ namespace DeviceRepairManager
             txtWorkOrderId.Text = workOrder.WorkOrderId.ToString();
             dtpCreationDate.Value = workOrder.CreationDate;
 
-            
+
             if (workOrder.CompletionDate.HasValue)
                 dtpCompletionDate.Value = workOrder.CompletionDate.Value;
             else
-                dtpCompletionDate.Checked = false; 
+                dtpCompletionDate.Checked = false;
 
             cmbStatus.SelectedItem = workOrder.Status ?? "";
             cmbPriority.SelectedItem = workOrder.Priority ?? "";
@@ -552,6 +554,13 @@ namespace DeviceRepairManager
         private void btnAddWorkOrder_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            this.Hide(); 
+            LoginForm loginForm = new LoginForm(_conn); 
+            loginForm.Show();
         }
     }
 }

@@ -44,6 +44,7 @@
             dtpCompletionDate = new DateTimePicker();
             cmbStatus = new ComboBox();
             cmbSelectWorkOrder = new ComboBox();
+            btnLogout = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvWorkOrders).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvRepairs).BeginInit();
             grpDetails.SuspendLayout();
@@ -67,7 +68,6 @@
             dgvWorkOrders.RowHeadersWidth = 51;
             dgvWorkOrders.Size = new Size(204, 188);
             dgvWorkOrders.TabIndex = 1;
-           // dgvWorkOrders.CellContentClick += this.dgvWorkOrders_CellContentClick_1;
             // 
             // dgvRepairs
             // 
@@ -191,7 +191,6 @@
             cmbStatus.Name = "cmbStatus";
             cmbStatus.Size = new Size(131, 28);
             cmbStatus.TabIndex = 1;
-           // cmbStatus.SelectedIndexChanged += this.cmbStatus_SelectedIndexChanged;
             // 
             // cmbSelectWorkOrder
             // 
@@ -201,11 +200,22 @@
             cmbSelectWorkOrder.Size = new Size(131, 28);
             cmbSelectWorkOrder.TabIndex = 0;
             // 
+            // btnLogout
+            // 
+            btnLogout.Location = new Point(688, 12);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(94, 29);
+            btnLogout.TabIndex = 7;
+            btnLogout.Text = "Vissza";
+            btnLogout.UseVisualStyleBackColor = true;
+            btnLogout.Click += this.btnLogout_Click;
+            // 
             // TechnicianDashboardForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnLogout);
             Controls.Add(grpDetails);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -242,5 +252,6 @@
         private ComboBox cmbStatus;
         private Label label7;
         private Label label6;
+        private Button btnLogout;
     }
 }

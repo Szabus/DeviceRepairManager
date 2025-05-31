@@ -19,6 +19,7 @@ namespace DeviceRepairManager
         private WorkOrderRepository _workOrderRepo;
         private DeviceRepository _deviceRepo;
         private int _customerId;
+        private SQLiteConnection _conn;
 
         public CustomerDashboardForm(SQLiteConnection conn, int customerId)
         {
@@ -27,6 +28,7 @@ namespace DeviceRepairManager
             _workOrderRepo = new WorkOrderRepository(conn);
             _deviceRepo = new DeviceRepository(conn);
             _customerId = customerId;
+            _conn = conn;
 
             LoadDevicesForCustomer(_customerId);
             LoadWorkOrdersForCustomer(_customerId);
@@ -206,20 +208,20 @@ namespace DeviceRepairManager
         {
             var devices = _deviceRepo.GetDevicesByCustomerId(customerId);
             cmbSelectDevice.DataSource = devices;
-            cmbSelectDevice.DisplayMember = "Model"; 
-            cmbSelectDevice.ValueMember = "DeviceId";      
+            cmbSelectDevice.DisplayMember = "Model";
+            cmbSelectDevice.ValueMember = "DeviceId";
         }
 
         private void btnSubmitWorkOrder_Click(object sender, EventArgs e)
         {
-            
+
             try
             {
                 var newOrder = new WorkOrder
                 {
                     //RepairId = Convert.ToInt32(cmbSelectDevice.SelectedValue),
                     CreationDate = DateTime.Now,
-                    CreatedBy = _customerRepo.GetCustomerNameById(_customerId), 
+                    CreatedBy = _customerRepo.GetCustomerNameById(_customerId),
                     Priority = cmbPriority.SelectedItem?.ToString() ?? "Nincs megadva",
                     Notes = txtNotes.Text,
                     Status = "Új",
@@ -232,7 +234,7 @@ namespace DeviceRepairManager
 
                 MessageBox.Show("Szerviz leadva sikeresen!");
 
-                LoadWorkOrdersForCustomer(_customerId); 
+                LoadWorkOrdersForCustomer(_customerId);
                 cmbPriority.SelectedIndex = -1;
                 txtNotes.Clear();
                 cmbSelectDevice.SelectedIndex = -1;
@@ -241,6 +243,13 @@ namespace DeviceRepairManager
             {
                 MessageBox.Show("Hiba történt: " + ex.Message);
             }
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            LoginForm loginForm = new LoginForm(_conn);
+            loginForm.Show();
         }
     }
 }

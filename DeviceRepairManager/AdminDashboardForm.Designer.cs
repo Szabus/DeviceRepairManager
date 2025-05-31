@@ -100,6 +100,7 @@
             txtWorkOrderId = new TextBox();
             dgvWorkOrders = new DataGridView();
             label1 = new Label();
+            btnLogout = new Button();
             tabControl1.SuspendLayout();
             tabCustomers.SuspendLayout();
             groupBox1.SuspendLayout();
@@ -830,11 +831,22 @@
             label1.Text = "Admin felület";
             label1.Click += label1_Click;
             // 
+            // btnLogout
+            // 
+            btnLogout.Location = new Point(694, 12);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(94, 29);
+            btnLogout.TabIndex = 2;
+            btnLogout.Text = "Vissza";
+            btnLogout.UseVisualStyleBackColor = true;
+            btnLogout.Click += btnLogout_Click;
+            // 
             // AdminDashboardForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 642);
+            Controls.Add(btnLogout);
             Controls.Add(label1);
             Controls.Add(tabControl1);
             Name = "AdminDashboardForm";
@@ -932,5 +944,6 @@
         private Button btnDeleteWorkOrder;
         private Button btnUpdateWorkOrder;
         private Button btnAddWorkOrder;
+        private Button btnLogout;
     }
 }

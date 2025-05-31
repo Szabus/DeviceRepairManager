@@ -61,6 +61,7 @@
             label16 = new Label();
             txtSerialNumber = new TextBox();
             currentCustomerId = new TextBox();
+            btnLogout = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvDevices).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvWorkOrders).BeginInit();
             SuspendLayout();
@@ -353,11 +354,23 @@
             currentCustomerId.TabIndex = 32;
             currentCustomerId.TextChanged += currentCustomerId_TextChanged;
             // 
+            // btnLogout
+            // 
+            btnLogout.Location = new Point(638, 8);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(94, 29);
+            btnLogout.TabIndex = 33;
+            btnLogout.Text = "Vissza";
+            btnLogout.TextAlign = ContentAlignment.TopCenter;
+            btnLogout.UseVisualStyleBackColor = true;
+            btnLogout.Click += btnLogout_Click;
+            // 
             // CustomerDashboardForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(744, 650);
+            Controls.Add(btnLogout);
             Controls.Add(txtSerialNumber);
             Controls.Add(label16);
             Controls.Add(btnSave2);
@@ -435,5 +448,6 @@
         private Label label16;
         private TextBox txtSerialNumber;
         private TextBox currentCustomerId;
+        private Button btnLogout;
     }
 }

@@ -12,8 +12,6 @@ public class AdminRepository
         _conn = connection;
     }
 
-    // Ügyfelek kezelése
-
     public List<Customer> GetAllCustomers()
     {
         var customers = new List<Customer>();
@@ -112,9 +110,6 @@ public class AdminRepository
         cmd.Parameters.AddWithValue("@id", customerId);
         cmd.ExecuteNonQuery();
     }
-
-
-    // Szervizesek kezelése (Technicians)
 
     public List<Technician> GetAllTechnicians()
     {
@@ -231,8 +226,6 @@ public class AdminRepository
         cmd.Parameters.AddWithValue("@id", technicianId);
         cmd.ExecuteNonQuery();
     }
-
-    // Munkalapok kezelése (WorkOrders)
 
     public List<WorkOrder> GetAllWorkOrders()
     {
