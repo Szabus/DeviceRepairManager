@@ -1,0 +1,8 @@
+user: admin
+password: admin123
+
+user: nagy.anna@example.com
+password: anna123
+
+user: tech1@example.com
+password: tech123 

@@ -8,10 +8,12 @@ namespace DeviceRepairManager.Repositories
     public class WorkOrderRepository
     {
         private readonly SQLiteConnection _connection;
+        private readonly CustomerRepository _customerRepo;
 
         public WorkOrderRepository(SQLiteConnection connection)
         {
             _connection = connection;
+            _customerRepo = new CustomerRepository(connection);
         }
 
         public void AddWorkOrder(WorkOrder workOrder)
@@ -25,7 +27,7 @@ namespace DeviceRepairManager.Repositories
                     (@CreationDate, @CompletionDate, @Status, @Priority, @Notes, @HoursWorked, @RequiresApproval, @CreatedBy);
                 ";
 
-               // cmd.Parameters.AddWithValue("@RepairId", workOrder.RepairId);
+                // cmd.Parameters.AddWithValue("@RepairId", workOrder.RepairId);
                 cmd.Parameters.AddWithValue("@CreationDate", workOrder.CreationDate);
                 cmd.Parameters.AddWithValue("@CompletionDate", (object?)workOrder.CompletionDate ?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@Status", workOrder.Status ?? (object)DBNull.Value);
@@ -86,7 +88,7 @@ namespace DeviceRepairManager.Repositories
                 WHERE WorkOrderId = @WorkOrderId", _connection);
 
             cmd.Parameters.AddWithValue("@WorkOrderId", workOrder.WorkOrderId);
-           // cmd.Parameters.AddWithValue("@RepairId", workOrder.RepairId);
+            // cmd.Parameters.AddWithValue("@RepairId", workOrder.RepairId);
             cmd.Parameters.AddWithValue("@CreationDate", workOrder.CreationDate);
             cmd.Parameters.AddWithValue("@CompletionDate", workOrder.CompletionDate.HasValue ? (object)workOrder.CompletionDate.Value : DBNull.Value);
             cmd.Parameters.AddWithValue("@Status", workOrder.Status ?? (object)DBNull.Value);
@@ -117,44 +119,38 @@ namespace DeviceRepairManager.Repositories
 
         public List<WorkOrder> GetWorkOrdersByCustomer(int customerId)
         {
-            var result = new List<WorkOrder>();
+            var workOrders = new List<WorkOrder>();
 
-            using (var cmd = _connection.CreateCommand())
+            string customerName = _customerRepo.GetCustomerNameById(customerId); 
+            string query = "SELECT * FROM WorkOrders WHERE CreatedBy = @createdBy";
+
+            using (var cmd = new SQLiteCommand(query, _connection))
             {
-                cmd.CommandText = @"
-                    SELECT w.*
-                    FROM WorkOrders w
-                    JOIN Devices d ON w.RepairId = d.DeviceId
-                    WHERE d.CustomerId = @CustomerId;
-                ";
-
-                cmd.Parameters.AddWithValue("@CustomerId", customerId);
+                cmd.Parameters.AddWithValue("@createdBy", customerName);
 
                 using (var reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        var order = new WorkOrder
+                        var workOrder = new WorkOrder
                         {
-                            WorkOrderId = reader.GetInt32(reader.GetOrdinal("WorkOrderId")),
-                            CreationDate = reader.GetDateTime(reader.GetOrdinal("CreationDate")),
-                            CompletionDate = reader.IsDBNull(reader.GetOrdinal("CompletionDate"))
-                                             ? null
-                                             : reader.GetDateTime(reader.GetOrdinal("CompletionDate")),
-                            Status = reader["Status"]?.ToString(),
+                            WorkOrderId = Convert.ToInt32(reader["WorkOrderId"]),
+                            CreatedBy = reader["CreatedBy"].ToString(),
+                            CreationDate = Convert.ToDateTime(reader["CreationDate"]),
                             Priority = reader["Priority"]?.ToString(),
+                            Status = reader["Status"]?.ToString(),
+                            CompletionDate = reader["CompletionDate"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["CompletionDate"]),
                             Notes = reader["Notes"]?.ToString(),
-                            HoursWorked = reader.GetDouble(reader.GetOrdinal("HoursWorked")),
-                            RequiresApproval = reader.GetInt32(reader.GetOrdinal("RequiresApproval")) == 1,
-                            CreatedBy = reader["CreatedBy"]?.ToString()
+                            HoursWorked = reader["HoursWorked"] != DBNull.Value ? Convert.ToInt32(reader["HoursWorked"]) : 0,
+                            RequiresApproval = reader["RequiresApproval"] != DBNull.Value && Convert.ToBoolean(reader["RequiresApproval"])
                         };
 
-                        result.Add(order);
+                        workOrders.Add(workOrder);
                     }
                 }
             }
 
-            return result;
+            return workOrders;
         }
     }
 }
