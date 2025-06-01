@@ -1,0 +1,611 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|c:\\users\\szend\\source\\repos\\devicerepairmanager\\devicerepairmanager\\customerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|solutionrelative:devicerepairmanager\\customerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|c:\\users\\szend\\source\\repos\\devicerepairmanager\\devicerepairmanager\\customerdashboardform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|solutionrelative:devicerepairmanager\\customerdashboardform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|c:\\users\\szend\\source\\repos\\devicerepairmanager\\devicerepairmanager\\customerdashboardform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|solutionrelative:devicerepairmanager\\customerdashboardform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|c:\\users\\szend\\source\\repos\\devicerepairmanager\\devicerepairmanager\\adminrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|solutionrelative:devicerepairmanager\\adminrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|c:\\users\\szend\\source\\repos\\devicerepairmanager\\devicerepairmanager\\models\\workorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|solutionrelative:devicerepairmanager\\models\\workorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|c:\\users\\szend\\source\\repos\\devicerepairmanager\\devicerepairmanager\\models\\technician.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|solutionrelative:devicerepairmanager\\models\\technician.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|c:\\users\\szend\\source\\repos\\devicerepairmanager\\devicerepairmanager\\models\\repair.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|solutionrelative:devicerepairmanager\\models\\repair.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|c:\\users\\szend\\source\\repos\\devicerepairmanager\\devicerepairmanager\\models\\device.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|solutionrelative:devicerepairmanager\\models\\device.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|c:\\users\\szend\\source\\repos\\devicerepairmanager\\devicerepairmanager\\models\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|solutionrelative:devicerepairmanager\\models\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|c:\\users\\szend\\source\\repos\\devicerepairmanager\\devicerepairmanager\\models\\admin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|solutionrelative:devicerepairmanager\\models\\admin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|c:\\users\\szend\\source\\repos\\devicerepairmanager\\devicerepairmanager\\customerdashboardform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|solutionrelative:devicerepairmanager\\customerdashboardform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|c:\\users\\szend\\source\\repos\\devicerepairmanager\\devicerepairmanager\\techniciandashboardform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|solutionrelative:devicerepairmanager\\techniciandashboardform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|c:\\users\\szend\\source\\repos\\devicerepairmanager\\devicerepairmanager\\techniciandashboardform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|solutionrelative:devicerepairmanager\\techniciandashboardform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:3:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|c:\\users\\szend\\source\\repos\\devicerepairmanager\\devicerepairmanager\\admindashboardform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:3:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|solutionrelative:devicerepairmanager\\admindashboardform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|c:\\users\\szend\\source\\repos\\devicerepairmanager\\devicerepairmanager\\admindashboardform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|solutionrelative:devicerepairmanager\\admindashboardform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|c:\\users\\szend\\source\\repos\\devicerepairmanager\\devicerepairmanager\\databaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|solutionrelative:devicerepairmanager\\databaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|c:\\users\\szend\\source\\repos\\devicerepairmanager\\devicerepairmanager\\workorderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|solutionrelative:devicerepairmanager\\workorderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|c:\\users\\szend\\source\\repos\\devicerepairmanager\\devicerepairmanager\\admindashboardform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|solutionrelative:devicerepairmanager\\admindashboardform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:2:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|c:\\users\\szend\\source\\repos\\devicerepairmanager\\devicerepairmanager\\admindashboardform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:2:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|solutionrelative:devicerepairmanager\\admindashboardform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|c:\\users\\szend\\source\\repos\\devicerepairmanager\\devicerepairmanager\\techniciandashboardform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|solutionrelative:devicerepairmanager\\techniciandashboardform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|c:\\users\\szend\\source\\repos\\devicerepairmanager\\devicerepairmanager\\iworkorderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|solutionrelative:devicerepairmanager\\iworkorderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|c:\\users\\szend\\source\\repos\\devicerepairmanager\\devicerepairmanager\\admindashboardform.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}",
+      "RelativeMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|solutionrelative:devicerepairmanager\\admindashboardform.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|c:\\users\\szend\\source\\repos\\devicerepairmanager\\devicerepairmanager\\repairrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|solutionrelative:devicerepairmanager\\repairrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|c:\\users\\szend\\source\\repos\\devicerepairmanager\\devicerepairmanager\\irepairrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|solutionrelative:devicerepairmanager\\irepairrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|c:\\users\\szend\\source\\repos\\devicerepairmanager\\devicerepairmanager\\technicianrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|solutionrelative:devicerepairmanager\\technicianrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|c:\\users\\szend\\source\\repos\\devicerepairmanager\\devicerepairmanager\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|solutionrelative:devicerepairmanager\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|c:\\users\\szend\\source\\repos\\devicerepairmanager\\devicerepairmanager\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|solutionrelative:devicerepairmanager\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|c:\\users\\szend\\source\\repos\\devicerepairmanager\\devicerepairmanager\\loginform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|solutionrelative:devicerepairmanager\\loginform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|c:\\users\\szend\\source\\repos\\devicerepairmanager\\devicerepairmanager\\devicerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|solutionrelative:devicerepairmanager\\devicerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|c:\\users\\szend\\source\\repos\\devicerepairmanager\\devicerepairmanager\\devicerepairmanager.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|solutionrelative:devicerepairmanager\\devicerepairmanager.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|c:\\users\\szend\\source\\repos\\devicerepairmanager\\devicerepairmanager\\icustomerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|solutionrelative:devicerepairmanager\\icustomerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|c:\\users\\szend\\source\\repos\\devicerepairmanager\\devicerepairmanager\\idevicerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|solutionrelative:devicerepairmanager\\idevicerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:1:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|c:\\users\\szend\\source\\repos\\devicerepairmanager\\devicerepairmanager\\admindashboardform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:1:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|solutionrelative:devicerepairmanager\\admindashboardform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|c:\\users\\szend\\source\\repos\\devicerepairmanager\\devicerepairmanager\\itechnicianrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|solutionrelative:devicerepairmanager\\itechnicianrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|c:\\users\\szend\\source\\repos\\devicerepairmanager\\devicerepairmanager\\iadminrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F86CC46-A82C-4D4D-923A-03476E00E87E}|DeviceRepairManager\\DeviceRepairManager.csproj|solutionrelative:devicerepairmanager\\iadminrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "WorkOrder.cs",
+              "DocumentMoniker": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\Models\\WorkOrder.cs",
+              "RelativeDocumentMoniker": "DeviceRepairManager\\Models\\WorkOrder.cs",
+              "ToolTip": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\Models\\WorkOrder.cs",
+              "RelativeToolTip": "DeviceRepairManager\\Models\\WorkOrder.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAAAsAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T11:57:51.262Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AdminRepository.cs",
+              "DocumentMoniker": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\AdminRepository.cs",
+              "RelativeDocumentMoniker": "DeviceRepairManager\\AdminRepository.cs",
+              "ToolTip": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\AdminRepository.cs",
+              "RelativeToolTip": "DeviceRepairManager\\AdminRepository.cs",
+              "ViewState": "AgIAAD8BAAAAAAAAAAAAAOQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-31T10:29:21.572Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CustomerDashboardForm.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\CustomerDashboardForm.Designer.cs",
+              "RelativeDocumentMoniker": "DeviceRepairManager\\CustomerDashboardForm.Designer.cs",
+              "ToolTip": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\CustomerDashboardForm.Designer.cs",
+              "RelativeToolTip": "DeviceRepairManager\\CustomerDashboardForm.Designer.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAAAHEAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T20:31:20.671Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CustomerDashboardForm.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\CustomerDashboardForm.cs",
+              "RelativeDocumentMoniker": "DeviceRepairManager\\CustomerDashboardForm.cs",
+              "ToolTip": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\CustomerDashboardForm.cs [Design]",
+              "RelativeToolTip": "DeviceRepairManager\\CustomerDashboardForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-30T20:01:09.45Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CustomerRepository.cs",
+              "DocumentMoniker": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\CustomerRepository.cs",
+              "RelativeDocumentMoniker": "DeviceRepairManager\\CustomerRepository.cs",
+              "ToolTip": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\CustomerRepository.cs",
+              "RelativeToolTip": "DeviceRepairManager\\CustomerRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T12:05:04.489Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Technician.cs",
+              "DocumentMoniker": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\Models\\Technician.cs",
+              "RelativeDocumentMoniker": "DeviceRepairManager\\Models\\Technician.cs",
+              "ToolTip": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\Models\\Technician.cs",
+              "RelativeToolTip": "DeviceRepairManager\\Models\\Technician.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAAAYAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T14:38:41.45Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Repair.cs",
+              "DocumentMoniker": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\Models\\Repair.cs",
+              "RelativeDocumentMoniker": "DeviceRepairManager\\Models\\Repair.cs",
+              "ToolTip": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\Models\\Repair.cs",
+              "RelativeToolTip": "DeviceRepairManager\\Models\\Repair.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAABIAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-30T22:22:25.739Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Device.cs",
+              "DocumentMoniker": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\Models\\Device.cs",
+              "RelativeDocumentMoniker": "DeviceRepairManager\\Models\\Device.cs",
+              "ToolTip": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\Models\\Device.cs",
+              "RelativeToolTip": "DeviceRepairManager\\Models\\Device.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAoAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T19:54:11.49Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Customer.cs",
+              "DocumentMoniker": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\Models\\Customer.cs",
+              "RelativeDocumentMoniker": "DeviceRepairManager\\Models\\Customer.cs",
+              "ToolTip": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\Models\\Customer.cs",
+              "RelativeToolTip": "DeviceRepairManager\\Models\\Customer.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAAABAAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T12:49:49.517Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Admin.cs",
+              "DocumentMoniker": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\Models\\Admin.cs",
+              "RelativeDocumentMoniker": "DeviceRepairManager\\Models\\Admin.cs",
+              "ToolTip": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\Models\\Admin.cs",
+              "RelativeToolTip": "DeviceRepairManager\\Models\\Admin.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T11:57:37.592Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "CustomerDashboardForm.cs",
+              "DocumentMoniker": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\CustomerDashboardForm.cs",
+              "RelativeDocumentMoniker": "DeviceRepairManager\\CustomerDashboardForm.cs",
+              "ToolTip": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\CustomerDashboardForm.cs",
+              "RelativeToolTip": "DeviceRepairManager\\CustomerDashboardForm.cs",
+              "ViewState": "AgIAAPEAAAAAAAAAAAAAABUAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-30T21:07:37.938Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "TechnicianDashboardForm.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\TechnicianDashboardForm.cs",
+              "RelativeDocumentMoniker": "DeviceRepairManager\\TechnicianDashboardForm.cs",
+              "ToolTip": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\TechnicianDashboardForm.cs [Design]",
+              "RelativeToolTip": "DeviceRepairManager\\TechnicianDashboardForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-30T22:01:09.751Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "TechnicianDashboardForm.cs",
+              "DocumentMoniker": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\TechnicianDashboardForm.cs",
+              "RelativeDocumentMoniker": "DeviceRepairManager\\TechnicianDashboardForm.cs",
+              "ToolTip": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\TechnicianDashboardForm.cs",
+              "RelativeToolTip": "DeviceRepairManager\\TechnicianDashboardForm.cs",
+              "ViewState": "AgIAAIcAAAAAAAAAAAAAAJoAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-31T12:56:58.432Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "AdminDashboardForm.cs",
+              "DocumentMoniker": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\AdminDashboardForm.cs",
+              "RelativeDocumentMoniker": "DeviceRepairManager\\AdminDashboardForm.cs",
+              "ToolTip": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\AdminDashboardForm.cs",
+              "RelativeToolTip": "DeviceRepairManager\\AdminDashboardForm.cs",
+              "ViewState": "AgIAACoCAAAAAAAAAAAAADMCAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-31T13:36:54.975Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "AdminDashboardForm.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\AdminDashboardForm.cs",
+              "RelativeDocumentMoniker": "DeviceRepairManager\\AdminDashboardForm.cs",
+              "ToolTip": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\AdminDashboardForm.cs [Design]",
+              "RelativeToolTip": "DeviceRepairManager\\AdminDashboardForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-30T14:19:49.163Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "DatabaseService.cs",
+              "DocumentMoniker": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\DatabaseService.cs",
+              "RelativeDocumentMoniker": "DeviceRepairManager\\DatabaseService.cs",
+              "ToolTip": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\DatabaseService.cs",
+              "RelativeToolTip": "DeviceRepairManager\\DatabaseService.cs",
+              "ViewState": "AgIAAMYAAAAAAAAAAAArwNUAAABcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-30T20:49:37.177Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "WorkOrderRepository.cs",
+              "DocumentMoniker": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\WorkOrderRepository.cs",
+              "RelativeDocumentMoniker": "DeviceRepairManager\\WorkOrderRepository.cs",
+              "ToolTip": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\WorkOrderRepository.cs",
+              "RelativeToolTip": "DeviceRepairManager\\WorkOrderRepository.cs",
+              "ViewState": "AgIAAHYAAAAAAAAAAAAAAIUAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-30T14:42:17.469Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "AdminDashboardForm.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\AdminDashboardForm.Designer.cs",
+              "RelativeDocumentMoniker": "DeviceRepairManager\\AdminDashboardForm.Designer.cs",
+              "ToolTip": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\AdminDashboardForm.Designer.cs",
+              "RelativeToolTip": "DeviceRepairManager\\AdminDashboardForm.Designer.cs",
+              "ViewState": "AgIAAD0BAAAAAAAAAAAMwEoBAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-30T22:30:11.337Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "AdminDashboardForm.cs",
+              "DocumentMoniker": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\AdminDashboardForm.cs",
+              "RelativeDocumentMoniker": "DeviceRepairManager\\AdminDashboardForm.cs",
+              "ToolTip": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\AdminDashboardForm.cs",
+              "RelativeToolTip": "DeviceRepairManager\\AdminDashboardForm.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAD4vy8AAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T17:59:39.997Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "TechnicianDashboardForm.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\TechnicianDashboardForm.Designer.cs",
+              "RelativeDocumentMoniker": "DeviceRepairManager\\TechnicianDashboardForm.Designer.cs",
+              "ToolTip": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\TechnicianDashboardForm.Designer.cs",
+              "RelativeToolTip": "DeviceRepairManager\\TechnicianDashboardForm.Designer.cs",
+              "ViewState": "AgIAALQAAAAAAAAAAAAowL8AAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-30T22:17:10.026Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "IWorkOrderRepository.cs",
+              "DocumentMoniker": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\IWorkOrderRepository.cs",
+              "RelativeDocumentMoniker": "DeviceRepairManager\\IWorkOrderRepository.cs",
+              "ToolTip": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\IWorkOrderRepository.cs",
+              "RelativeToolTip": "DeviceRepairManager\\IWorkOrderRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T14:37:28.516Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "AdminDashboardForm.resx",
+              "DocumentMoniker": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\AdminDashboardForm.resx",
+              "RelativeDocumentMoniker": "DeviceRepairManager\\AdminDashboardForm.resx",
+              "ToolTip": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\AdminDashboardForm.resx",
+              "RelativeToolTip": "DeviceRepairManager\\AdminDashboardForm.resx",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2025-05-31T12:30:00.343Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "RepairRepository.cs",
+              "DocumentMoniker": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\RepairRepository.cs",
+              "RelativeDocumentMoniker": "DeviceRepairManager\\RepairRepository.cs",
+              "ToolTip": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\RepairRepository.cs",
+              "RelativeToolTip": "DeviceRepairManager\\RepairRepository.cs",
+              "ViewState": "AgIAAFgAAAAAAAAAAAAAAGEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-30T22:20:34.446Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "IRepairRepository.cs",
+              "DocumentMoniker": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\IRepairRepository.cs",
+              "RelativeDocumentMoniker": "DeviceRepairManager\\IRepairRepository.cs",
+              "ToolTip": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\IRepairRepository.cs",
+              "RelativeToolTip": "DeviceRepairManager\\IRepairRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-31T09:08:24.513Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "LoginForm.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\LoginForm.cs",
+              "RelativeDocumentMoniker": "DeviceRepairManager\\LoginForm.cs",
+              "ToolTip": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\LoginForm.cs [Design]",
+              "RelativeToolTip": "DeviceRepairManager\\LoginForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-30T14:20:23.938Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "TechnicianRepository.cs",
+              "DocumentMoniker": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\TechnicianRepository.cs",
+              "RelativeDocumentMoniker": "DeviceRepairManager\\TechnicianRepository.cs",
+              "ToolTip": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\TechnicianRepository.cs",
+              "RelativeToolTip": "DeviceRepairManager\\TechnicianRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T12:07:44.308Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "LoginForm.cs",
+              "DocumentMoniker": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\LoginForm.cs",
+              "RelativeDocumentMoniker": "DeviceRepairManager\\LoginForm.cs",
+              "ToolTip": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\LoginForm.cs",
+              "RelativeToolTip": "DeviceRepairManager\\LoginForm.cs",
+              "ViewState": "AgIAADMAAAAAAAAAAAAAADQAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-30T18:57:26.607Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "LoginForm.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\LoginForm.Designer.cs",
+              "RelativeDocumentMoniker": "DeviceRepairManager\\LoginForm.Designer.cs",
+              "ToolTip": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\LoginForm.Designer.cs",
+              "RelativeToolTip": "DeviceRepairManager\\LoginForm.Designer.cs",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAAAE0AAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T13:47:25.984Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "DeviceRepository.cs",
+              "DocumentMoniker": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\DeviceRepository.cs",
+              "RelativeDocumentMoniker": "DeviceRepairManager\\DeviceRepository.cs",
+              "ToolTip": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\DeviceRepository.cs",
+              "RelativeToolTip": "DeviceRepairManager\\DeviceRepository.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAAAAAC4AAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T20:19:51.597Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "DeviceRepairManager",
+              "DocumentMoniker": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\DeviceRepairManager.csproj",
+              "RelativeDocumentMoniker": "DeviceRepairManager\\DeviceRepairManager.csproj",
+              "ToolTip": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\DeviceRepairManager.csproj",
+              "RelativeToolTip": "DeviceRepairManager\\DeviceRepairManager.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-05-30T14:01:47.504Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "ICustomerRepository.cs",
+              "DocumentMoniker": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\ICustomerRepository.cs",
+              "RelativeDocumentMoniker": "DeviceRepairManager\\ICustomerRepository.cs",
+              "ToolTip": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\ICustomerRepository.cs",
+              "RelativeToolTip": "DeviceRepairManager\\ICustomerRepository.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAAAAsAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T12:05:06.81Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "IDeviceRepository.cs",
+              "DocumentMoniker": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\IDeviceRepository.cs",
+              "RelativeDocumentMoniker": "DeviceRepairManager\\IDeviceRepository.cs",
+              "ToolTip": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\IDeviceRepository.cs",
+              "RelativeToolTip": "DeviceRepairManager\\IDeviceRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-30T20:55:06.51Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "AdminDashboardForm.cs",
+              "DocumentMoniker": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\AdminDashboardForm.cs",
+              "RelativeDocumentMoniker": "DeviceRepairManager\\AdminDashboardForm.cs",
+              "ToolTip": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\AdminDashboardForm.cs",
+              "RelativeToolTip": "DeviceRepairManager\\AdminDashboardForm.cs",
+              "ViewState": "AgIAADMBAAAAAAAAAAAAAD0BAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T14:49:21.419Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "ITechnicianRepository.cs",
+              "DocumentMoniker": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\ITechnicianRepository.cs",
+              "RelativeDocumentMoniker": "DeviceRepairManager\\ITechnicianRepository.cs",
+              "ToolTip": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\ITechnicianRepository.cs",
+              "RelativeToolTip": "DeviceRepairManager\\ITechnicianRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T12:07:39.625Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "IAdminRepository.cs",
+              "DocumentMoniker": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\IAdminRepository.cs",
+              "RelativeDocumentMoniker": "DeviceRepairManager\\IAdminRepository.cs",
+              "ToolTip": "C:\\Users\\szend\\source\\repos\\DeviceRepairManager\\DeviceRepairManager\\IAdminRepository.cs",
+              "RelativeToolTip": "DeviceRepairManager\\IAdminRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T12:06:39.234Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
